@@ -1,0 +1,6 @@
+# Full-resolution poster masters — kept locally, never published
+posters_original/
+
+# OS / editor cruft
+Thumbs.db
+.DS_Store
