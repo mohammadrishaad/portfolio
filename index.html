@@ -4,56 +4,50 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Mohammad Rishaad | Graphic Designer</title>
-<meta name="description" content="Mohammad Rishaad, graphic designer specializing in Islamic event posters, brand materials, and educational media. Available for remote work with clients worldwide." />
+<meta name="description" content="Mohammad Rishaad, graphic designer specializing in Islamic event posters, brand materials, and educational media. Remote work with clients worldwide, from $20 USD per poster." />
 <!-- Absolute URLs required: WhatsApp / LinkedIn / Fiverr will not resolve relative paths when building a link preview card. -->
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://mohammadrishaad.github.io/portfolio/" />
 <meta property="og:title" content="Mohammad Rishaad | Graphic Designer" />
-<meta property="og:description" content="Islamic event posters, brand materials, and educational media. Bold typography, intentional visual language. Available for remote work worldwide." />
+<meta property="og:description" content="Islamic event posters, brand materials, and educational media. Bold typography, intentional visual language. Remote work worldwide, from $20 USD." />
 <meta property="og:image" content="https://mohammadrishaad.github.io/portfolio/portrait.jpeg" />
 <meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230c0b0a'/><text x='32' y='46' font-family='Georgia,serif' font-size='40' font-weight='700' fill='%23c9a227' text-anchor='middle'>M</text></svg>" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Bebas+Neue&family=Abril+Fatface&family=Syne:wght@800&family=DM+Serif+Display:ital@0,1&family=Righteous&family=Oswald:wght@700&family=Cinzel:wght@900&family=Cormorant+Garamond:ital,wght@1,700&family=Anton&family=Unbounded:wght@900&family=Secular+One&family=Teko:wght@700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&display=swap" rel="stylesheet" />
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg:        #0d0d0d;
-    --bg2:       #141414;
-    --bg3:       #1a1a1a;
-    --neon:      #b6ff4e;
-    --neon-dim:  rgba(182,255,78,0.12);
-    --white:     #f0ede6;
-    --muted:     #888880;
-    --border:    rgba(255,255,255,0.07);
-    --font-display: 'Playfair Display', serif;
-    --font-body:    'Space Grotesk', sans-serif;
+    /* Warm near-black. Neutral greys read cold against warm poster art. */
+    --bg:        #0c0b0a;
+    --bg2:       #131211;
+    --bg3:       #1b1917;
+
+    /* Citation gold. Chromatically neutral enough to frame red, teal and
+       green posters without competing with any of them. */
+    --gold:      #c9a227;
+    --gold-hi:   #e2c052;
+    --gold-dim:  rgba(201,162,39,0.10);
+    --gold-line: rgba(201,162,39,0.28);
+
+    --white:     #f2efe8;
+    --muted:     #9a938a;
+    --border:    rgba(255,255,255,0.09);
+
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body:    'Space Grotesk', system-ui, sans-serif;
+
+    /* Two micro sizes only. Nothing below 12px. */
+    --fs-label:  0.75rem;   /* 12px */
+    --fs-small:  0.875rem;  /* 14px */
+
     --radius:    10px;
     --transition: 0.22s cubic-bezier(0.4,0,0.2,1);
   }
 
   html { scroll-behavior: smooth; }
-
-  /* ── CURSOR PRIMITIVES (keyframes + registered property).
-     The cursor visuals themselves are defined once, further down. ── */
-  * { cursor: none; }
-  /* Typing needs a real caret, so the form stays usable */
-  .form-group input, .form-group textarea { cursor: auto; }
-  @keyframes blobMorph {
-    0%, 100% { border-radius: 42% 58% 65% 35% / 45% 45% 55% 55%; }
-    25%      { border-radius: 62% 38% 40% 60% / 60% 35% 65% 40%; }
-    50%      { border-radius: 50% 50% 35% 65% / 40% 62% 38% 60%; }
-    75%      { border-radius: 38% 62% 55% 45% / 55% 40% 60% 45%; }
-  }
-  @property --water-angle {
-    syntax: '<angle>';
-    inherits: false;
-    initial-value: 0deg;
-  }
-  @keyframes waterFlow {
-    to { --water-angle: 360deg; }
-  }
 
   body {
     background: var(--bg);
@@ -62,6 +56,23 @@
     font-size: 16px;
     line-height: 1.65;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Keyboard users must be able to see where they are */
+  :focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 
   /* ── NAV ── */
@@ -73,60 +84,50 @@
     z-index: 100;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
-    width: calc(100% - 2.4rem);
-    padding: 0.8rem 1.7rem;
+    gap: 2.4rem;
+    max-width: calc(100% - 2.4rem);
+    padding: 0.7rem 0.8rem 0.7rem 1.5rem;
     border-radius: 999px;
-    background: rgba(255,255,255,0.025);
-    backdrop-filter: blur(38px) saturate(220%);
-    -webkit-backdrop-filter: blur(38px) saturate(220%);
-    border: 1px solid rgba(255,255,255,0.18);
-    box-shadow:
-      0 24px 48px -14px rgba(0,0,0,0.6),
-      0 4px 14px rgba(0,0,0,0.3),
-      inset 0 1.5px 0 rgba(255,255,255,0.28),
-      inset 0 -1px 0 rgba(255,255,255,0.06);
+    background: rgba(20,18,16,0.55);
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    border: 1px solid rgba(255,255,255,0.12);
+    box-shadow: 0 18px 40px -14px rgba(0,0,0,0.7);
   }
   .nav-logo {
     font-family: var(--font-display);
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     font-weight: 700;
     letter-spacing: -0.01em;
     color: var(--white);
     text-decoration: none;
-    text-shadow: 0 1px 4px rgba(0,0,0,0.45);
+    white-space: nowrap;
+    padding: 0.55rem 0;
   }
-  .nav-logo span { color: var(--neon); }
-  .nav-links {
-    display: flex;
-    gap: 2.2rem;
-    list-style: none;
-  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
   .nav-links a {
-    color: rgba(240,237,230,0.88);
+    color: rgba(242,239,232,0.82);
     text-decoration: none;
     font-size: 0.88rem;
-    font-weight: 600;
-    letter-spacing: 0.03em;
-    text-shadow: 0 1px 4px rgba(0,0,0,0.45);
+    font-weight: 500;
+    letter-spacing: 0.02em;
     transition: color var(--transition);
   }
-  .nav-links a:hover { color: var(--white); }
+  .nav-links a:hover, .nav-links a.active { color: var(--gold); }
   .nav-cta {
-    background: var(--neon);
-    color: #0d0d0d;
-    font-family: var(--font-body);
+    background: var(--gold);
+    color: #14120e;
     font-size: 0.85rem;
-    font-weight: 600;
-    padding: 0.5rem 1.2rem;
-    border-radius: 6px;
+    font-weight: 700;
+    padding: 0.55rem 1.2rem;
+    border-radius: 999px;
     text-decoration: none;
-    transition: opacity var(--transition), transform var(--transition), box-shadow var(--transition);
+    white-space: nowrap;
+    transition: background var(--transition), transform var(--transition);
   }
-  .nav-cta:hover { opacity: 0.92; transform: translateY(-1px); box-shadow: 0 0 18px rgba(182,255,78,0.5); }
+  .nav-cta:hover { background: var(--gold-hi); transform: translateY(-1px); }
 
-  /* hamburger */
   .hamburger {
     display: none;
     flex-direction: column;
@@ -134,734 +135,345 @@
     cursor: pointer;
     background: none;
     border: none;
-    padding: 4px;
+    padding: 12px 11px;
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
   }
   .hamburger span {
-    display: block;
-    width: 22px;
-    height: 2px;
-    background: var(--white);
-    border-radius: 2px;
+    display: block; width: 22px; height: 2px;
+    background: var(--white); border-radius: 2px;
     transition: var(--transition);
   }
   .mobile-menu { display: none; }
 
-  /* ── HERO ── */
-  #home {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 8rem 5% 5rem;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero-grid-bg {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(182,255,78,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(182,255,78,0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-    pointer-events: none;
-  }
-  .hero-glow {
-    position: absolute;
-    top: 20%;
-    right: -10%;
-    width: 500px;
-    height: 500px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(182,255,78,0.07) 0%, transparent 65%);
-    pointer-events: none;
-    transform-origin: center;
-    animation: heroHeartbeat 2.6s ease-in-out infinite;
-  }
-  @keyframes heroHeartbeat {
-    0%   { transform: scale(1); }
-    12%  { transform: scale(1.075); }
-    24%  { transform: scale(1.01); }
-    36%  { transform: scale(1.06); }
-    55%  { transform: scale(1); }
-    100% { transform: scale(1); }
-  }
-
-  /* Thin rings that radiate outward from the glow each beat, spreading across the hero */
-  .hero-pulse-ring {
-    position: absolute;
-    top: 20%;
-    right: -10%;
-    width: 500px;
-    height: 500px;
-    border-radius: 50%;
-    border: 1px solid rgba(182,255,78,0.12);
-    transform: scale(0.4);
-    transform-origin: center;
-    opacity: 0;
-    pointer-events: none;
-    animation: heroRingPulse 10.4s linear infinite;
-  }
-  .hero-pulse-ring--2 { animation-delay: 3.46s; }
-  .hero-pulse-ring--3 { animation-delay: 6.93s; }
-  @keyframes heroRingPulse {
-    0%   { transform: scale(0.4); opacity: 0; }
-    3%   { opacity: 0.15; }
-    50%  { transform: scale(6.5); opacity: 0; }
-    100% { transform: scale(6.5); opacity: 0; }
-  }
-  .hero-eyebrow {
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    color: var(--neon);
-    text-transform: uppercase;
-    margin-bottom: 1.4rem;
-  }
-  .hero-headline {
-    font-family: var(--font-display);
-    font-size: clamp(4rem, 8vw, 7rem);
-    font-weight: 800;
-    line-height: 1.1;
-    display: block;
-    letter-spacing: -0.03em;
-    color: var(--white);
-    max-width: 1000px;
-    margin-bottom: 1.6rem;
-  }
-  .hero-headline em {
-    font-style: italic;
-    color: var(--neon);
-  }
-  .hero-sub {
-    font-size: 1.05rem;
-    color: var(--muted);
-    max-width: 480px;
-    margin-bottom: 2.8rem;
-    line-height: 1.6;
-  }
-  .hero-actions {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    align-items: center;
-  }
-  .btn-primary {
-    background: var(--neon);
-    color: #0d0d0d;
+  /* ── BUTTONS ── */
+  .btn-primary, .btn-secondary {
     font-family: var(--font-body);
-    font-weight: 700;
-    font-size: 0.92rem;
-    padding: 0.8rem 1.8rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 0.85rem 1.8rem;
     border-radius: var(--radius);
     text-decoration: none;
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    position: relative;
-    overflow: hidden;
-    transition: opacity var(--transition), transform var(--transition), box-shadow var(--transition);
+    gap: 0.45rem;
+    cursor: pointer;
+    border: 1px solid transparent;
   }
-  .btn-primary:hover { opacity: 0.92; transform: translateY(-2px); box-shadow: 0 0 22px rgba(182,255,78,0.5); }
+  .btn-primary {
+    background: var(--gold);
+    color: #14120e;
+    transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+  }
+  .btn-primary:hover {
+    background: var(--gold-hi);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 26px -8px rgba(201,162,39,0.55);
+  }
   .btn-secondary {
-    border: 1px solid var(--border);
+    border-color: var(--border);
     color: var(--white);
-    font-family: var(--font-body);
-    font-weight: 500;
-    font-size: 0.92rem;
-    padding: 0.8rem 1.8rem;
-    border-radius: var(--radius);
-    text-decoration: none;
+    background: transparent;
     transition: border-color var(--transition), transform var(--transition);
   }
-  .btn-secondary:hover { border-color: rgba(255,255,255,0.25); transform: translateY(-2px); }
+  .btn-secondary:hover { border-color: var(--gold-line); transform: translateY(-2px); }
 
-  .hero-scroll {
-    margin-top: 5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.7rem;
-    color: var(--muted);
-    font-size: 0.78rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+  /* Only the hero CTA animates. If everything pulses, nothing is primary. */
+  @keyframes ctaPulse {
+    0%   { box-shadow: 0 0 0 0 rgba(201,162,39,0.45); }
+    70%  { box-shadow: 0 0 0 14px rgba(201,162,39,0); }
+    100% { box-shadow: 0 0 0 0 rgba(201,162,39,0); }
   }
-  .hero-scroll-line {
-    width: 40px;
-    height: 1px;
-    background: var(--muted);
-  }
+  #home .btn-primary { animation: ctaPulse 2.6s ease-out infinite; }
+  #home .btn-primary:hover { animation: none; }
 
   /* ── SECTIONS ── */
   section { padding: 6rem 5%; }
+  .section-head { max-width: 720px; }
   .section-label {
-    font-size: 0.75rem;
+    font-size: var(--fs-label);
     font-weight: 600;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--neon);
+    color: var(--gold);
     margin-bottom: 0.8rem;
   }
   .section-title {
     font-family: var(--font-display);
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(1.9rem, 4vw, 3rem);
     font-weight: 900;
-    line-height: 1.1;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
     color: var(--white);
-    margin-bottom: 3.5rem;
+    margin-bottom: 1rem;
   }
-  .section-divider {
-    border: none;
-    border-top: 1px solid var(--border);
-    margin: 0;
+  .section-sub {
+    color: var(--muted);
+    font-size: var(--fs-small);
+    line-height: 1.7;
+    max-width: 56ch;
   }
+  .section-divider { border: none; border-top: 1px solid var(--border); margin: 0; }
 
-  /* ── PORTFOLIO ── */
-  #portfolio { background: var(--bg2); padding-left: 0; padding-right: 0; }
-  #portfolio .section-label,
-  #portfolio .section-title,
-  #portfolio .portfolio-cta { padding-left: 5%; padding-right: 5%; }
-
-  /* Carousel wrapper */
-  .carousel-wrap {
-    position: relative;
-    margin-bottom: 0.4rem;
-  }
-  .carousel-wrap::before,
-  .carousel-wrap::after {
-    content: '';
-    position: absolute;
-    top: 0; bottom: 0;
-    width: 120px;
-    z-index: 2;
-    pointer-events: none;
-  }
-  .carousel-wrap::before { left: 0;  background: linear-gradient(90deg, var(--bg2), transparent); }
-  .carousel-wrap::after  { right: 0; background: linear-gradient(-90deg, var(--bg2), transparent); }
-
-  .carousel-scroll {
-    overflow-x: auto;
-    overflow-y: hidden;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-  .carousel-scroll::-webkit-scrollbar { display: none; }
-  .carousel-scroll.dragging { user-select: none; }
-  .carousel-scroll.dragging .poster-card { pointer-events: none; }
-
-  .carousel-track {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    width: max-content;
-    padding: 4.5rem 0 1rem;
-  }
-
-  .poster-card {
-    background: rgba(255,255,255,0.12);
-    backdrop-filter: blur(34px) saturate(220%);
-    -webkit-backdrop-filter: blur(34px) saturate(220%);
-    border: 1px solid rgba(255,255,255,0.28);
-    border-radius: var(--radius);
-    overflow: hidden;
-    cursor: pointer;
-    transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
-    position: relative;
-    width: auto;
-    min-height: calc(240px + 4.15rem);
-    flex-shrink: 0;
-    box-shadow:
-      0 14px 34px rgba(0,0,0,0.4),
-      inset 0 1.5px 0 rgba(255,255,255,0.32),
-      inset 0 -1px 0 rgba(255,255,255,0.06),
-      inset 1px 0 0 rgba(255,255,255,0.1);
-  }
-  .poster-card:hover {
-    transform: translateY(-14px) scale(1.07);
-    border-color: rgba(182,255,78,0.45);
-    box-shadow: 0 0 40px rgba(182,255,78,0.22), 0 26px 60px rgba(0,0,0,0.6), inset 0 1.5px 0 rgba(255,255,255,0.4);
-    z-index: 5;
-  }
-  .poster-img {
-    height: 240px;
-    width: auto;
-    min-width: 130px;
-    max-width: 380px;
-    object-fit: cover;
-    display: block;
-    background: var(--bg3);
-    -webkit-user-drag: none;
-    user-select: none;
-  }
-  .poster-placeholder {
-    width: 100%;
-    aspect-ratio: 3/4;
-    background: linear-gradient(135deg, #1a1a1a 0%, #222 100%);
+  /* ── HERO ── */
+  #home {
+    min-height: 100svh;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    color: var(--muted);
-    font-size: 0.72rem;
-    letter-spacing: 0.05em;
-    text-align: center;
-    padding: 1.5rem;
-  }
-  .poster-placeholder-icon {
-    font-size: 1.8rem;
-    opacity: 0.3;
-    margin-bottom: 0.2rem;
-  }
-  .poster-overlay {
-    display: none;
-  }
-  .poster-overlay-title {
-    font-family: var(--font-display);
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--white);
-  }
-  .poster-info {
-    width: 0;
-    min-width: 100%;
-    min-height: 4.15rem;
-    box-sizing: border-box;
-    padding: 0.9rem 0.9rem 1.05rem;
-  }
-  .poster-name {
-    font-size: 0.82rem;
-    font-weight: 600;
-    line-height: 1.3;
-    color: var(--white);
-    white-space: nowrap;
+    padding: 8rem 5% 4.5rem;
+    position: relative;
     overflow: hidden;
-    text-overflow: ellipsis;
+  }
+  .hero-grid-bg {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(201,162,39,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,162,39,0.035) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse 90% 70% at 60% 35%, #000 20%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 90% 70% at 60% 35%, #000 20%, transparent 75%);
+    pointer-events: none;
+  }
+  .hero-glow {
+    position: absolute;
+    top: 12%; right: -12%;
+    width: 560px; height: 560px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,162,39,0.10) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero-inner { position: relative; max-width: 1100px; }
+  .hero-eyebrow {
+    font-size: var(--fs-label);
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.3rem;
+  }
+  .hero-headline {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 9vw, 6.5rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    color: var(--white);
+    max-width: 15ch;
+    margin-bottom: 1.5rem;
+  }
+  .hero-headline em { font-style: italic; color: var(--gold); }
+  .hero-sub {
+    font-size: 1.02rem;
+    color: var(--muted);
+    max-width: 50ch;
+    margin-bottom: 2.2rem;
+    line-height: 1.7;
+  }
+
+  /* Trust strip sits ABOVE the buttons so it survives the mobile fold */
+  .hero-clients { margin-bottom: 2.2rem; }
+  .hero-clients-label {
+    display: block;
+    font-size: var(--fs-label);
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.7rem;
+  }
+  .hero-clients-list {
+    display: flex; flex-wrap: wrap; align-items: center;
+    gap: 0.4rem 1rem;
+    list-style: none;
+    max-width: 60ch;
+  }
+  .hero-clients-list li {
+    font-size: var(--fs-small);
+    font-weight: 600;
+    color: rgba(242,239,232,0.80);
+  }
+  .hero-clients-list li + li::before {
+    content: '·';
+    margin-right: 1rem;
+    color: var(--gold);
+  }
+  .hero-actions { display: flex; gap: 0.9rem; flex-wrap: wrap; align-items: center; }
+
+  /* ── PORTFOLIO ── */
+  #portfolio { background: var(--bg2); padding-top: 5rem; padding-bottom: 6.5rem; }
+
+  .filter-bar {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+    margin: 2rem 0 2.5rem;
+  }
+  .filter-btn {
+    font-family: var(--font-body);
+    font-size: var(--fs-small);
+    font-weight: 600;
+    color: var(--muted);
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.6rem 1.2rem;
+    min-height: 44px;
+    cursor: pointer;
+    transition: color var(--transition), border-color var(--transition), background var(--transition);
+  }
+  .filter-btn:hover { color: var(--white); border-color: var(--gold-line); }
+  .filter-btn[aria-pressed="true"] {
+    color: var(--gold);
+    border-color: var(--gold-line);
+    background: var(--gold-dim);
+  }
+
+  .poster-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.6rem;
+  }
+  .poster-card {
+    display: block;
+    background: transparent;
+    border: none;
+    padding: 0;
+    text-align: left;
+    font-family: inherit;
+    cursor: pointer;
+    transition: transform var(--transition);
+  }
+  .poster-card[hidden] { display: none; }
+  .poster-card:hover { transform: translateY(-4px); }
+
+  /* Fixed 4:5 box with contain, not cover.
+     Cropping a poster cuts the venue/date bar off the bottom, which is
+     the one part a client actually needs to see. */
+  .poster-frame {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: border-color var(--transition), box-shadow var(--transition);
+  }
+  .poster-card:hover .poster-frame {
+    border-color: var(--gold-line);
+    box-shadow: 0 20px 44px -16px rgba(0,0,0,0.8);
+  }
+  .poster-img {
+    width: 100%; height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+  .poster-frame { display: block; }
+  .poster-info { display: block; padding: 0.85rem 0.1rem 0; }
+  .poster-name {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--white);
+    /* Two lines, then ellipsis. Never truncate a title mid-word on line one. */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
   .poster-org {
-    font-size: 0.68rem;
-    letter-spacing: 0.02em;
+    display: block;
+    font-size: var(--fs-label);
+    letter-spacing: 0.04em;
     text-transform: uppercase;
     color: var(--muted);
     margin-top: 0.3rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 
+  .poster-card.beyond { display: none; }
+  .grid-more { text-align: center; margin-top: 2.6rem; }
+  .grid-more[hidden] { display: none; }
   .portfolio-cta {
     text-align: center;
-    margin-top: 2.5rem;
+    margin-top: 3.5rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--border);
   }
+  .portfolio-cta p { color: var(--muted); font-size: var(--fs-small); margin-bottom: 1.1rem; }
 
   /* ── ABOUT ── */
   #about { background: var(--bg); }
   .about-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 4.5rem;
     align-items: start;
   }
-  .about-portrait {
-    position: relative;
-  }
+  .about-portrait { position: relative; }
   .about-portrait-frame {
     width: 100%;
     aspect-ratio: 3/4;
     border-radius: var(--radius);
     background: var(--bg3);
     border: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
     overflow: hidden;
-  }
-  .about-initials {
-    font-family: var(--font-display);
-    font-size: 5rem;
-    font-weight: 900;
-    color: rgba(182,255,78,0.15);
-    letter-spacing: -0.05em;
-    user-select: none;
+    position: relative;
   }
   .about-portrait-img {
-    width: 100%;
-    height: 100%;
+    width: 100%; height: 100%;
     object-fit: cover;
-    position: absolute;
-    inset: 0;
+    display: block;
   }
-  .about-accent-box {
-    position: absolute;
-    bottom: -1.2rem;
-    right: -1.2rem;
-    background: var(--neon);
-    color: #0d0d0d;
-    padding: 1.2rem 1.5rem;
-    border-radius: var(--radius);
-    text-align: center;
-    z-index: 2;
+  .about-stats {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 1rem;
   }
-  .about-accent-num {
+  .about-stat {
+    flex: 1;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-left: 2px solid var(--gold);
+    border-radius: 8px;
+    padding: 0.9rem 1rem;
+  }
+  .about-stat-num {
     font-family: var(--font-display);
-    font-size: 2.2rem;
+    font-size: 1.6rem;
     font-weight: 900;
     line-height: 1;
+    color: var(--gold);
   }
-  .about-accent-label {
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    margin-top: 0.2rem;
-    opacity: 0.75;
+  .about-stat-label {
+    font-size: var(--fs-label);
+    color: var(--muted);
+    margin-top: 0.25rem;
+    letter-spacing: 0.03em;
   }
   .about-body p {
     color: var(--muted);
     font-size: 1rem;
     line-height: 1.8;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.15rem;
+    max-width: 62ch;
   }
   .about-body p strong { color: var(--white); font-weight: 600; }
-  .skills-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin: 1.8rem 0 2.2rem;
-  }
+  .skills-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.8rem 0 2.2rem; }
   .skill-tag {
-    background: rgba(182,255,78,0.07);
-    backdrop-filter: blur(26px) saturate(220%);
-    -webkit-backdrop-filter: blur(26px) saturate(220%);
-    border: 1px solid rgba(182,255,78,0.18);
-    color: rgba(182,255,78,0.78);
-    font-size: 0.78rem;
+    background: var(--gold-dim);
+    border: 1px solid var(--gold-line);
+    color: var(--gold-hi);
+    font-size: var(--fs-label);
     font-weight: 600;
-    padding: 0.35rem 0.85rem;
+    padding: 0.4rem 0.85rem;
     border-radius: 100px;
-    letter-spacing: 0.04em;
-    box-shadow:
-      0 4px 16px rgba(0,0,0,0.28),
-      inset 0 1.5px 0 rgba(255,255,255,0.3),
-      inset 0 -1px 0 rgba(255,255,255,0.05);
+    letter-spacing: 0.03em;
   }
 
-  /* ── CONTACT ── */
-  #contact { background: var(--bg2); }
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: start;
-  }
-  .contact-intro {
-    color: var(--muted);
-    font-size: 1.05rem;
-    line-height: 1.8;
-    margin-bottom: 2rem;
-  }
-  .contact-methods { display: flex; flex-direction: column; gap: 1rem; }
-  .contact-method {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem 1.2rem;
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    text-decoration: none;
-    color: var(--white);
-    transition: border-color var(--transition), transform var(--transition);
-  }
-  .contact-method:hover {
-    border-color: rgba(182,255,78,0.3);
-    transform: translateX(4px);
-  }
-  .contact-method-icon {
-    width: 40px;
-    height: 40px;
-    background: var(--neon-dim);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1rem;
-    flex-shrink: 0;
-  }
-  .contact-method-label {
-    font-size: 0.72rem;
-    color: var(--muted);
-    letter-spacing: 0.05em;
-  }
-  .contact-method-value { font-size: 0.9rem; font-weight: 600; }
-
-  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
-  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-  .form-group label {
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    color: var(--muted);
-    text-transform: uppercase;
-  }
-  .form-group input,
-  .form-group textarea {
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    color: var(--white);
-    font-family: var(--font-body);
-    font-size: 0.95rem;
-    padding: 0.8rem 1rem;
-    outline: none;
-    transition: border-color var(--transition);
-    width: 100%;
-    resize: vertical;
-  }
-  .form-group input::placeholder,
-  .form-group textarea::placeholder { color: #444; }
-  .form-group input:focus,
-  .form-group textarea:focus { border-color: rgba(182,255,78,0.4); }
-  .form-group textarea { min-height: 130px; }
-  .form-submit {
-    background: var(--neon);
-    color: #0d0d0d;
-    font-family: var(--font-body);
-    font-size: 0.95rem;
-    font-weight: 700;
-    padding: 0.9rem 2rem;
-    border: none;
-    border-radius: var(--radius);
-    cursor: pointer;
-    transition: opacity var(--transition), transform var(--transition);
-    align-self: flex-start;
-    margin-top: 0.4rem;
-  }
-  .form-submit:hover { opacity: 0.88; transform: translateY(-2px); }
-
-  /* ── FOOTER ── */
-  footer {
-    padding: 2rem 5%;
-    border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-    color: var(--muted);
-    font-size: 0.82rem;
-  }
-  footer a { color: var(--muted); text-decoration: none; transition: color var(--transition); }
-  footer a:hover { color: var(--neon); }
-
-  /* ── LIGHTBOX ── */
-  #lightbox {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.92);
-    z-index: 999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.22s;
-  }
-  #lightbox.open { opacity: 1; pointer-events: all; }
-  #lightbox img {
-    max-height: 85vh;
-    max-width: 90vw;
-    border-radius: var(--radius);
-    object-fit: contain;
-  }
-  #lightbox-close {
-    position: fixed;
-    top: 1.5rem;
-    right: 1.5rem;
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    color: var(--white);
-    font-size: 1.4rem;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: border-color var(--transition);
-  }
-  #lightbox-close:hover { border-color: var(--neon); color: var(--neon); }
-
-  /* ── CUSTOM CURSOR ── */
-  body { cursor: none; }
-  #cursor {
-    position: fixed;
-    width: 12px; height: 12px;
-    background: var(--neon);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    transition: transform 0.1s, width 0.2s, height 0.2s, opacity 0.2s;
-    mix-blend-mode: difference;
-  }
-  #cursor-ring {
-    position: fixed;
-    width: 36px; height: 36px;
-    border: 3px solid rgba(182,255,78,0.22);
-    border-radius: 42% 58% 65% 35% / 45% 45% 55% 55%;
-    animation: blobMorph 3s ease-in-out infinite;
-    pointer-events: none;
-    z-index: 9998;
-    transform: translate(-50%, -50%);
-    transition: transform 0.18s ease-out, width 0.25s, height 0.25s, border-color 0.2s;
-  }
-  #cursor-ring::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    padding: 3px;
-    border-radius: inherit;
-    background: conic-gradient(from var(--water-angle),
-      rgba(182,255,78,0) 0deg,
-      rgba(182,255,78,0.6) 55deg,
-      rgba(182,255,78,0) 130deg,
-      rgba(182,255,78,0.4) 220deg,
-      rgba(182,255,78,0) 300deg,
-      rgba(182,255,78,0) 360deg);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    animation: waterFlow 2.4s linear infinite;
-    pointer-events: none;
-  }
-  body:has(a:hover) #cursor,
-  body:has(button:hover) #cursor { width: 20px; height: 20px; }
-  body:has(a:hover) #cursor-ring,
-  body:has(button:hover) #cursor-ring { width: 52px; height: 52px; border-color: rgba(182,255,78,0.6); }
-
-  /* ── CTA ANIMATION ──
-     Deliberately limited to the single hero button. When every button
-     pulses at once nothing reads as the primary action. ── */
-  @keyframes ctaPulse {
-    0%   { box-shadow: 0 0 0 0 rgba(182,255,78,0.55); }
-    70%  { box-shadow: 0 0 0 14px rgba(182,255,78,0); }
-    100% { box-shadow: 0 0 0 0 rgba(182,255,78,0); }
-  }
-  @keyframes ctaShimmer {
-    0%   { background-position: -200% center; }
-    100% { background-position: 200% center; }
-  }
-  #home .btn-primary {
-    animation: ctaPulse 2.4s ease-out infinite;
-  }
-  #home .btn-primary::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.35) 50%, transparent 60%);
-    background-size: 200% 100%;
-    animation: ctaShimmer 2.8s linear infinite;
-  }
-  #home .btn-primary:hover { animation: none; box-shadow: 0 0 24px rgba(182,255,78,0.5); }
-  #home .btn-primary:hover::after { animation: none; opacity: 0; }
-
-  .form-submit:hover { box-shadow: 0 0 24px rgba(182,255,78,0.45); }
-
-  /* ── POSTER CARD NEON GLOW ON HOVER ── */
-  .poster-card {
-    transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
-  }
-  .poster-card:hover {
-    box-shadow: 0 0 40px rgba(182,255,78,0.24), 0 0 10px rgba(182,255,78,0.12), 0 26px 60px rgba(0,0,0,0.6), inset 0 1.5px 0 rgba(255,255,255,0.4);
-  }
-  .poster-placeholder {
-    transition: background var(--transition);
-  }
-  .poster-card:hover .poster-placeholder {
-    background: rgba(182,255,78,0.04);
-  }
-
-  /* ── FONT SHUFFLE on "speaks" ── */
-  /* Ghost reserves layout space in the final font so the shuffle animation
-     (which swaps font-family) can never change the h1's line height.
-     A zero-size baseline marker in both ghost and overlay lets JS measure
-     each one's real baseline (via getBoundingClientRect) and shift the
-     overlay to match exactly, regardless of the current font's metrics. */
-  .word-speaks-wrap {
-    position: relative;
-    display: inline-block;
-    vertical-align: baseline;
-  }
-  .sr-only {
-    position: absolute;
-    width: 1px; height: 1px;
-    padding: 0; margin: -1px;
-    overflow: hidden;
-    clip: rect(0,0,0,0);
-    white-space: nowrap;
-    border: 0;
-  }
-  .word-speaks-ghost {
-    visibility: hidden;
-    font-style: italic;
-  }
-  .baseline-mark {
-    display: inline-block;
-    width: 0;
-    height: 0;
-    vertical-align: baseline;
-  }
-  #word-speaks {
-    position: absolute;
-    left: 0;
-    top: 0;
-    display: inline-block;
-    transition: opacity 0.10s;
-    font-style: italic;
-    color: var(--neon);
-    line-height: inherit;
-    white-space: nowrap;
-  }
-  /* ── TRUSTED-BY STRIP (hero) ── */
-  .hero-clients {
-    margin-top: 3.2rem;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 0.6rem 1.4rem;
-  }
-  .hero-clients-label {
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-  .hero-clients-list {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.5rem 1.1rem;
-    list-style: none;
-  }
-  .hero-clients-list li {
-    font-size: 0.82rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    color: rgba(240,237,230,0.72);
-  }
-  .hero-clients-list li + li::before {
-    content: '·';
-    margin-right: 1.1rem;
-    color: var(--muted);
-  }
-
-  /* ── PROCESS STRIP ── */
-  /* Class, not id, so the nav scroll-spy (which reads section[id]) ignores it */
-  .process-section { background: var(--bg); padding-top: 4.5rem; padding-bottom: 4.5rem; }
+  /* ── PROCESS ── */
+  .process-section { background: var(--bg2); padding-top: 4.5rem; padding-bottom: 4.5rem; }
   .process-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -875,38 +487,243 @@
     padding: 1.6rem 1.5rem;
     transition: border-color var(--transition), transform var(--transition);
   }
-  .process-step:hover {
-    border-color: rgba(182,255,78,0.25);
-    transform: translateY(-3px);
-  }
+  .process-step:hover { border-color: var(--gold-line); transform: translateY(-3px); }
   .process-num {
     font-family: var(--font-display);
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     font-weight: 900;
     line-height: 1;
-    color: rgba(182,255,78,0.55);
+    color: var(--gold);
     margin-bottom: 0.7rem;
   }
-  .process-title {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--white);
-    margin-bottom: 0.4rem;
+  .process-title { font-size: 1rem; font-weight: 600; color: var(--white); margin-bottom: 0.4rem; }
+  .process-desc { font-size: var(--fs-small); line-height: 1.65; color: var(--muted); }
+
+  .price-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.3rem 1rem;
+    margin-top: 1.6rem;
+    padding: 1.1rem 1.4rem;
+    background: var(--gold-dim);
+    border: 1px solid var(--gold-line);
+    border-radius: var(--radius);
   }
-  .process-desc {
-    font-size: 0.88rem;
-    line-height: 1.65;
+  .price-amount {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 900;
+    color: var(--gold-hi);
+  }
+  .price-note { font-size: var(--fs-small); color: var(--muted); }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--bg); padding-bottom: 5rem; }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4.5rem;
+    align-items: start;
+    margin-top: 2.5rem;
+  }
+  .contact-intro {
     color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    max-width: 52ch;
+  }
+  .contact-methods { display: flex; flex-direction: column; gap: 0.8rem; }
+  .contact-method {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.2rem;
+    min-height: 44px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--white);
+    transition: border-color var(--transition), transform var(--transition);
+  }
+  .contact-method:hover { border-color: var(--gold-line); transform: translateX(4px); }
+  .contact-method-icon {
+    width: 40px; height: 40px;
+    background: var(--gold-dim);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    color: var(--gold);
+  }
+  .contact-method-icon svg { width: 19px; height: 19px; }
+  .contact-method-label { display: block; font-size: var(--fs-label); color: var(--muted); letter-spacing: 0.04em; }
+  .contact-method-value { display: block; font-size: var(--fs-small); font-weight: 600; word-break: break-word; }
+
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group label {
+    font-size: var(--fs-label);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .form-group input, .form-group textarea {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    padding: 0.85rem 1rem;
+    outline: none;
+    transition: border-color var(--transition);
+    width: 100%;
+    resize: vertical;
+  }
+  .form-group input::placeholder, .form-group textarea::placeholder { color: #56514a; }
+  .form-group input:focus, .form-group textarea:focus { border-color: var(--gold-line); }
+  .form-group textarea { min-height: 130px; }
+  .form-submit {
+    background: var(--gold);
+    color: #14120e;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 0.9rem 2rem;
+    min-height: 44px;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    align-self: flex-start;
+    margin-top: 0.4rem;
+    transition: background var(--transition), transform var(--transition);
+  }
+  .form-submit:hover { background: var(--gold-hi); transform: translateY(-2px); }
+
+  /* mailto: silently does nothing if no mail client is configured,
+     so always give the visitor a copyable address as a fallback. */
+  .form-fallback {
+    display: none;
+    margin-top: 0.9rem;
+    padding: 0.9rem 1.1rem;
+    background: var(--bg3);
+    border: 1px solid var(--gold-line);
+    border-radius: var(--radius);
+    font-size: var(--fs-small);
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .form-fallback.show { display: block; }
+  .form-fallback strong { color: var(--white); font-weight: 600; }
+  .copy-btn {
+    margin-top: 0.6rem;
+    font-family: var(--font-body);
+    font-size: var(--fs-label);
+    font-weight: 600;
+    color: var(--gold);
+    background: transparent;
+    border: 1px solid var(--gold-line);
+    border-radius: 6px;
+    padding: 0.45rem 0.9rem;
+    min-height: 36px;
+    cursor: pointer;
+    transition: background var(--transition);
+  }
+  .copy-btn:hover { background: var(--gold-dim); }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 2.2rem 5%;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    color: var(--muted);
+    font-size: var(--fs-small);
+  }
+  footer a {
+    color: var(--muted);
+    text-decoration: none;
+    padding: 0.7rem 0;
+    display: inline-block;
+    transition: color var(--transition);
+  }
+  footer a:hover { color: var(--gold); }
+
+  /* ── LIGHTBOX ── */
+  #lightbox {
+    position: fixed; inset: 0;
+    background: rgba(6,5,4,0.95);
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 4.5rem 1.2rem 2rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.22s;
+  }
+  #lightbox.open { opacity: 1; pointer-events: all; }
+  #lightbox img {
+    max-height: 76vh;
+    max-width: min(92vw, 780px);
+    border-radius: var(--radius);
+    object-fit: contain;
+  }
+  .lb-caption { text-align: center; max-width: 46ch; }
+  .lb-title { font-size: 1rem; font-weight: 600; color: var(--white); }
+  .lb-org { font-size: var(--fs-label); text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin-top: 0.2rem; }
+  .lb-counter { font-size: var(--fs-label); color: var(--gold); margin-top: 0.5rem; letter-spacing: 0.08em; }
+  .lb-btn {
+    position: fixed;
+    background: rgba(27,25,23,0.9);
+    border: 1px solid var(--border);
+    color: var(--white);
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: border-color var(--transition), color var(--transition);
+  }
+  .lb-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .lb-btn svg { width: 18px; height: 18px; }
+  #lb-close { top: 1.3rem; right: 1.3rem; }
+  #lb-prev  { left: 1.3rem;  top: 50%; transform: translateY(-50%); }
+  #lb-next  { right: 1.3rem; top: 50%; transform: translateY(-50%); }
+
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
   }
 
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1100px) {
+    .poster-grid { grid-template-columns: repeat(2, 1fr); }
+    .about-grid { gap: 3rem; }
+  }
   @media (max-width: 820px) {
+    section { padding: 4.5rem 6%; }
+    #home { padding: 7rem 6% 3.5rem; }
     .nav-links, .nav-cta { display: none; }
     .hamburger { display: flex; }
+    nav { gap: 0.5rem; padding: 0.55rem 0.6rem 0.55rem 1.3rem; }
     .mobile-menu {
       display: none;
       position: fixed;
       inset: 0;
-      top: 90px;
+      top: 0;
       background: var(--bg);
       z-index: 99;
       flex-direction: column;
@@ -918,83 +735,70 @@
     .mobile-menu a {
       color: var(--white);
       text-decoration: none;
-      font-size: 1.1rem;
-      font-weight: 500;
+      font-family: var(--font-display);
+      font-size: 1.7rem;
+      font-weight: 700;
     }
     .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-    .about-accent-box { right: 0; bottom: -1rem; }
-    .portfolio-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 0.8rem; }
     .process-grid { grid-template-columns: 1fr; }
-    .hero-clients { margin-top: 2.6rem; }
-    /* No custom cursor on small screens */
-    #cursor, #cursor-ring { display: none !important; }
-    *, body { cursor: auto; }
-    a, button, .poster-card, .form-submit, .hamburger { cursor: pointer; }
+    #lb-prev { left: 0.6rem; }
+    #lb-next { right: 0.6rem; }
+    .lb-btn { width: 44px; height: 44px; }
   }
-
-  /* Touch devices have no pointer to follow, so drop the custom cursor entirely */
-  @media (hover: none), (pointer: coarse) {
-    #cursor, #cursor-ring { display: none !important; }
-    *, body { cursor: auto; }
-    a, button, .poster-card, .form-submit, .hamburger { cursor: pointer; }
+  /* One column below 700px. A poster at half of a 375px screen is
+     unreadable, which defeats the point of showing it at all. */
+  @media (max-width: 700px) {
+    .poster-grid { grid-template-columns: 1fr; gap: 2rem; }
   }
 </style>
 </head>
 <body>
-<div id="cursor"></div>
-<div id="cursor-ring"></div>
 
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="#home">M<span>.</span>Rishaad</a>
   <ul class="nav-links">
     <li><a href="#home">Home</a></li>
-    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#portfolio">Work</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a class="nav-cta" href="#contact">Let's work</a>
-  <button class="hamburger" id="hamburger" aria-label="Open menu">
+  <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
-<!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#home" onclick="closeMobile()">Home</a>
-  <a href="#portfolio" onclick="closeMobile()">Portfolio</a>
-  <a href="#about" onclick="closeMobile()">About</a>
-  <a href="#contact" onclick="closeMobile()">Contact</a>
+  <a href="#home">Home</a>
+  <a href="#portfolio">Work</a>
+  <a href="#about">About</a>
+  <a href="#contact">Contact</a>
 </div>
 
 <!-- HERO -->
 <section id="home">
   <div class="hero-grid-bg"></div>
   <div class="hero-glow"></div>
-  <div class="hero-pulse-ring"></div>
-  <div class="hero-pulse-ring hero-pulse-ring--2"></div>
-  <div class="hero-pulse-ring hero-pulse-ring--3"></div>
-  <p class="hero-eyebrow">Graphic Designer &amp; Visual Storyteller</p>
-  <h1 class="hero-headline">Design that <span class="word-speaks-wrap"><span class="sr-only">speaks</span><span class="word-speaks-ghost" aria-hidden="true">speaks<i class="baseline-mark"></i></span><span id="word-speaks" aria-hidden="true">speaks<i class="baseline-mark"></i></span></span> before you read it</h1>
-  <p class="hero-sub">
-    I design Islamic event posters, brand materials, and educational media for community organizations and brands. Bold typography, intentional visual language, and remote work with clients worldwide.
-  </p>
-  <div class="hero-actions">
-    <a class="btn-primary" href="#portfolio">View my work →</a>
-    <a class="btn-secondary" href="#contact">Get in touch</a>
-  </div>
-  <div class="hero-clients">
-    <span class="hero-clients-label">Designed for</span>
-    <ul class="hero-clients-list">
-      <li>Radiant Wing of Huda</li>
-      <li>Muslim Growth Movement</li>
-      <li>Islamic Education Centre</li>
-      <li>AT-Tayyib Institute</li>
-    </ul>
-  </div>
-  <div class="hero-scroll">
-    <span class="hero-scroll-line"></span>
-    Scroll to explore
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Graphic Designer &amp; Visual Storyteller</p>
+    <h1 class="hero-headline">Design that <em>speaks</em> before you read it</h1>
+    <p class="hero-sub">
+      I design Islamic event posters, brand materials, and educational media for community organizations and small businesses. Remote work with clients worldwide, starting at $20 USD.
+    </p>
+    <div class="hero-clients">
+      <span class="hero-clients-label">Designed for</span>
+      <ul class="hero-clients-list">
+        <li>Radiant Wing of Huda</li>
+        <li>Muslim Growth Movement</li>
+        <li>Islamic Education Centre</li>
+        <li>At-Tayyib Institute</li>
+      </ul>
+    </div>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#portfolio">View my work</a>
+      <a class="btn-secondary" href="#contact">Get in touch</a>
+    </div>
   </div>
 </section>
 
@@ -1002,754 +806,192 @@
 
 <!-- PORTFOLIO -->
 <section id="portfolio">
-  <p class="section-label">Selected work</p>
-  <h2 class="section-title">Posters &amp; graphics</h2>
-
-  <!-- CAROUSEL 1: scrolls right -->
-  <div class="carousel-wrap">
-   <div class="carousel-scroll">
-    <div class="carousel-track right" id="track1">
-      <!-- Row 1 cards (duplicated below for seamless loop) -->
-       
-      <div class="poster-card">
-        <img class="poster-img" src="posters/seminar.webp" alt="Ahl-e-Hadees Seminar"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Ahl-e-Hadees Seminar</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Ahl-e-Hadees Seminar</p>
-          <p class="poster-org">Ahl-e-Hadees D.K District Commitee</p>
-        </div>
-      </div>
-
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/uzkurnallah.webp" alt="UzkurnAllah Course"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">UzkurnAllah Course</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">UzkurnAllah Course</p>
-          <p class="poster-org">Islamic Education Centre</p>
-        </div>
-      </div>
-
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/tafseer.webp" alt="Tafseer Course"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Tafseer Course</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Tafseer Course</p>
-          <p class="poster-org">Islamic Education Centre</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/ARABIC.webp" alt="Arabic Course"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Arabic Course</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Arabic Course</p>
-          <p class="poster-org">Islamic Education Centre</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/AHS1.webp" alt="Ahl-e-Hadees Seminar"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Ahl-e-Hadees Seminar</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Ahl-e-Hadees Seminar</p>
-          <p class="poster-org">Ahl-e-Hadees D.K District Commitee</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/AHS2.webp" alt="Ahl-e-Hadees Seminar"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Ahl-e-Hadees Seminar</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Ahl-e-Hadees Seminar</p>
-          <p class="poster-org">Ahl-e-Hadees D.K District Commitee</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/Menu2.webp" alt="Brookies"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Brookies Menu</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Brookies Menu</p>
-          <p class="poster-org">Brookies</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/ahlehadeesconf1.webp" alt="Ahl-e-Hadees Conference"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Ahl-e-Hadees Conference</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Ahl-e-Hadees Conference</p>
-          <p class="poster-org">Ahl-e-Hadees D.K District Commitee</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/press.webp" alt="Ahl-e-Hadees Press Release"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Ahl-e-Hadees Press Release</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Ahl-e-Hadees Press Release</p>
-          <p class="poster-org">Ahl-e-Hadees D.K District Commitee</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/12.webp" alt="Ahl-e-Hadees Conference-"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Ahl-e-Hadees Conference</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Ahl-e-Hadees Conference</p>
-          <p class="poster-org">Ahl-e-Hadees D.K District Commitee</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/ram26.webp" alt="Advices to the Youth"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Advices to the Youth</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Advices to the Youth</p>
-          <p class="poster-org">Radiant Wing of Huda</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/ram22.webp" alt="Outcome of The Muttaqeen"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Outcome of The Muttaqeen</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Outcome of The Muttaqeen</p>
-          <p class="poster-org">Radiant Wing of Huda</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/ram20.webp" alt="The Arrow That Never Misses"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">The Arrow That Never Misses</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">The Arrow That Never Misses</p>
-          <p class="poster-org">Radiant Wing of Huda</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/pots tayyib.webp" alt="Purification of The Soul"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Purification of The Soul</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Purification of The Soul</p>
-          <p class="poster-org">At-Tayyib Institute</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/ram6.webp" alt="Volunteers Meet"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Volunteers Meet</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Volunteers Meet</p>
-          <p class="poster-org">Radiant Wing of Huda</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/ram14.webp" alt="Preserving Time"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Preserving Time</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Preserving Time</p>
-          <p class="poster-org">Radiant Wing of Huda</p>
-        </div>
-      </div>
-
-      
-
-
-      <!-- Duplicate for seamless loop -->
-
-
-
-      
-      <div class="poster-card">
-        <img class="poster-img" src="posters/seminar.webp" alt="Ahl-e-Hadees Seminar"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Ahl-e-Hadees Seminar</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Ahl-e-Hadees Seminar</p>
-          <p class="poster-org">Ahl-e-Hadees D.K District Commitee</p>
-        </div>
-      </div>
-
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/uzkurnallah.webp" alt="UzkurnAllah Course"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">UzkurnAllah Course</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">UzkurnAllah Course</p>
-          <p class="poster-org">Islamic Education Centre</p>
-        </div>
-      </div>
-
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/tafseer.webp" alt="Tafseer Course"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Tafseer Course</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Tafseer Course</p>
-          <p class="poster-org">Islamic Education Centre</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/ARABIC.webp" alt="Arabic Course"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Arabic Course</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Arabic Course</p>
-          <p class="poster-org">Islamic Education Centre</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/AHS1.webp" alt="Ahl-e-Hadees Seminar"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Ahl-e-Hadees Seminar</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Ahl-e-Hadees Seminar</p>
-          <p class="poster-org">Ahl-e-Hadees D.K District Commitee</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/AHS2.webp" alt="Ahl-e-Hadees Seminar"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Ahl-e-Hadees Seminar</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Ahl-e-Hadees Seminar</p>
-          <p class="poster-org">Ahl-e-Hadees D.K District Commitee</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/Menu2.webp" alt="Brookies"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Brookies Menu</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Brookies Menu</p>
-          <p class="poster-org">Brookies</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/ahlehadeesconf1.webp" alt="Ahl-e-Hadees Conference"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Ahl-e-Hadees Conference</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Ahl-e-Hadees Conference</p>
-          <p class="poster-org">Ahl-e-Hadees D.K District Commitee</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/press.webp" alt="Ahl-e-Hadees Press Release"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Ahl-e-Hadees Press Release</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Ahl-e-Hadees Press Release</p>
-          <p class="poster-org">Ahl-e-Hadees D.K District Commitee</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/12.webp" alt="Ahl-e-Hadees Conference-"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Ahl-e-Hadees Conference</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Ahl-e-Hadees Conference</p>
-          <p class="poster-org">Ahl-e-Hadees D.K District Commitee</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/ram26.webp" alt="Advices to the Youth"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Advices to the Youth</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Advices to the Youth</p>
-          <p class="poster-org">Radiant Wing of Huda</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/ram22.webp" alt="Outcome of The Muttaqeen"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Outcome of The Muttaqeen</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Outcome of The Muttaqeen</p>
-          <p class="poster-org">Radiant Wing of Huda</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/ram20.webp" alt="The Arrow That Never Misses"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">The Arrow That Never Misses</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">The Arrow That Never Misses</p>
-          <p class="poster-org">Radiant Wing of Huda</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/pots tayyib.webp" alt="Purification of The Soul"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Purification of The Soul</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Purification of The Soul</p>
-          <p class="poster-org">At-Tayyib Institute</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/ram6.webp" alt="Volunteers Meet"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Volunteers Meet</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Volunteers Meet</p>
-          <p class="poster-org">Radiant Wing of Huda</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/ram14.webp" alt="Preserving Time"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Preserving Time</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Preserving Time</p>
-          <p class="poster-org">Radiant Wing of Huda</p>
-        </div>
-      </div>
-
-    </div>
-   </div>
+  <div class="section-head">
+    <p class="section-label">Selected work</p>
+    <h2 class="section-title">Posters &amp; graphics</h2>
+    <p class="section-sub">Sixteen selected pieces across events, courses, and business work. Click any poster to view it full size.</p>
   </div>
 
-  <!-- CAROUSEL 2: scrolls left -->
-
-
-  <div class="carousel-wrap">
-   <div class="carousel-scroll">
-    <div class="carousel-track left" id="track2">
-      <!-- Row 2 cards (duplicated for seamless loop) -->
-      
-      <div class="poster-card">
-        <img class="poster-img" src="posters/ram12.webp" alt="Deeds That Build Homes In Jannah"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Deeds That Build Homes In Jannah</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Deeds That Build Homes In Jannah</p>
-          <p class="poster-org">Radiant Wing of Huda</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/ram4.webp" alt="Objectives Of Fasting"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Objectives Of Fasting</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Objectives Of Fasting</p>
-          <p class="poster-org">Radiant Wing of Huda</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/taraweeh.webp" alt="Taraweeh Salah"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Taraweeh Salah</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Taraweeh Salah</p>
-          <p class="poster-org">Radiant Wing of Huda</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/ramadan tayyib.webp" alt="How to Make The Most of Ramadan"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">How to Make The Most of Ramadan</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">How to Make The Most of Ramadan</p>
-          <p class="poster-org">At-Tayyib Institute</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/3 DAYS.webp" alt="Sports Meet"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Sports Meet</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Sports Meet</p>
-          <p class="poster-org">Radiant Wing of Huda</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/2 DAYS.webp" alt="Sports Meet"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Sports Meet</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Sports Meet</p>
-          <p class="poster-org">Radiant Wing of Huda</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/7 DAYS.webp" alt="Sports Meet"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Sports Meet</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Sports Meet</p>
-          <p class="poster-org">Radiant Wing of Huda</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/tuition 26.webp" alt="Class 10 Tuition"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Class 10 Tuition</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Class 10 Tuition</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/iec.webp" alt="Mishkaat - Unleashing Masterminds"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Mishkaat - Unleashing Masterminds</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Mishkaat - Unleashing Masterminds</p>
-          <p class="poster-org">Islamic Education Centre</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/imam shafie friday.webp" alt="Sunnahs of Friday"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Sunnahs of Friday</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Sunnahs of Friday</p>
-          <p class="poster-org">Masjid Imam ash-Shafie', kuloor</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/rights of a muslim.webp" alt="Rights of a Muslim"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Rights of a Muslim</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Rights of a Muslim</p>
-          <p class="poster-org">Radiant Wing of Huda</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/crash course.webp" alt="Class 10 Crash Course"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Class 10 Crash Course</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Class 10 Crash Course</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/najdah.webp" alt="An-Najdah Counselling"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">An-Najdah Counselling</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">An-Najdah Counselling</p>
-          <p class="poster-org">At-Tayyib Institute</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/10.webp" alt="Loving The Prophet"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Loving The Prophet</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Loving The Prophet</p>
-          <p class="poster-org">Radiant Wing of Huda</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/Tazkiya class 25.webp" alt="Effects of Sins"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Effects of Sins</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Effects of Sins</p>
-          <p class="poster-org">Radiant Wing of Huda</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/TAZKIYA CLASS 23.webp" alt="Reality of Death"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Reality of Death</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Reality of Death</p>
-          <p class="poster-org">Radiant Wing of Huda</p>
-        </div>
-      </div>
-
-
-
-
-      <!-- Duplicate for seamless loop -->
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/ram12.webp" alt="Deeds That Build Homes In Jannah"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Deeds That Build Homes In Jannah</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Deeds That Build Homes In Jannah</p>
-          <p class="poster-org">Radiant Wing of Huda</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/ram4.webp" alt="Objectives Of Fasting"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Objectives Of Fasting</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Objectives Of Fasting</p>
-          <p class="poster-org">Radiant Wing of Huda</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/taraweeh.webp" alt="Taraweeh Salah"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Taraweeh Salah</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Taraweeh Salah</p>
-          <p class="poster-org">Radiant Wing of Huda</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/ramadan tayyib.webp" alt="How to Make The Most of Ramadan"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">How to Make The Most of Ramadan</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">How to Make The Most of Ramadan</p>
-          <p class="poster-org">At-Tayyib Institute</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/3 DAYS.webp" alt="Sports Meet"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Sports Meet</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Sports Meet</p>
-          <p class="poster-org">Radiant Wing of Huda</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/2 DAYS.webp" alt="Sports Meet"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Sports Meet</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Sports Meet</p>
-          <p class="poster-org">Radiant Wing of Huda</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/7 DAYS.webp" alt="Sports Meet"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Sports Meet</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Sports Meet</p>
-          <p class="poster-org">Radiant Wing of Huda</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/tuition 26.webp" alt="Class 10 Tuition"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Class 10 Tuition</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Class 10 Tuition</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/iec.webp" alt="Mishkaat - Unleashing Masterminds"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Mishkaat - Unleashing Masterminds</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Mishkaat - Unleashing Masterminds</p>
-          <p class="poster-org">Islamic Education Centre</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/imam shafie friday.webp" alt="Sunnahs of Friday"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Sunnahs of Friday</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Sunnahs of Friday</p>
-          <p class="poster-org">Masjid Imam ash-Shafie', kuloor</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/rights of a muslim.webp" alt="Rights of a Muslim"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Rights of a Muslim</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Rights of a Muslim</p>
-          <p class="poster-org">Radiant Wing of Huda</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/crash course.webp" alt="Class 10 Crash Course"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Class 10 Crash Course</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Class 10 Crash Course</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/najdah.webp" alt="An-Najdah Counselling"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">An-Najdah Counselling</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">An-Najdah Counselling</p>
-          <p class="poster-org">At-Tayyib Institute</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/10.webp" alt="Loving The Prophet"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Loving The Prophet</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Loving The Prophet</p>
-          <p class="poster-org">Radiant Wing of Huda</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/Tazkiya class 25.webp" alt="Effects of Sins"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Effects of Sins</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Effects of Sins</p>
-          <p class="poster-org">Radiant Wing of Huda</p>
-        </div>
-      </div>
-
-      <div class="poster-card">
-        <img class="poster-img" src="posters/TAZKIYA CLASS 23.webp" alt="Reality of Death"/>
-        <div class="poster-overlay">
-          <p class="poster-overlay-title">Reality of Death</p>
-        </div>
-        <div class="poster-info">
-          <p class="poster-name">Reality of Death</p>
-          <p class="poster-org">Radiant Wing of Huda</p>
-        </div>
-      </div>
-
-
-    </div>
-   </div>
+  <div class="filter-bar" role="group" aria-label="Filter work by category">
+    <button class="filter-btn" data-filter="all" aria-pressed="true">All work</button>
+    <button class="filter-btn" data-filter="events" aria-pressed="false">Events</button>
+    <button class="filter-btn" data-filter="courses" aria-pressed="false">Courses</button>
+    <button class="filter-btn" data-filter="business" aria-pressed="false">Business</button>
   </div>
+
+  <div class="poster-grid" id="posterGrid">
+
+    <button class="poster-card" data-cat="business">
+      <span class="poster-frame">
+        <img class="poster-img" src="posters/Menu2.webp" width="1280" height="1600" alt="Menu design for Brookies, laying out product names and prices" />
+      </span>
+      <span class="poster-info">
+        <span class="poster-name">Brookies Menu</span>
+        <span class="poster-org">Brookies</span>
+      </span>
+    </button>
+
+    <button class="poster-card" data-cat="courses">
+      <span class="poster-frame">
+        <img class="poster-img" src="posters/uzkurnallah.webp" width="1080" height="1600" alt="Poster announcing the UzkurnAllah course by Islamic Education Centre" />
+      </span>
+      <span class="poster-info">
+        <span class="poster-name">UzkurnAllah Course</span>
+        <span class="poster-org">Islamic Education Centre</span>
+      </span>
+    </button>
+
+    <button class="poster-card" data-cat="courses">
+      <span class="poster-frame">
+        <img class="poster-img" src="posters/ram20.webp" width="1600" height="1600" loading="lazy" alt="Poster titled The Arrow That Never Misses for Radiant Wing of Huda" />
+      </span>
+      <span class="poster-info">
+        <span class="poster-name">The Arrow That Never Misses</span>
+        <span class="poster-org">Radiant Wing of Huda</span>
+      </span>
+    </button>
+
+    <button class="poster-card" data-cat="courses">
+      <span class="poster-frame">
+        <img class="poster-img" src="posters/pots tayyib.webp" width="1600" height="1600" loading="lazy" alt="Poster for Purification of The Soul by At-Tayyib Institute" />
+      </span>
+      <span class="poster-info">
+        <span class="poster-name">Purification of The Soul</span>
+        <span class="poster-org">At-Tayyib Institute</span>
+      </span>
+    </button>
+
+    <button class="poster-card" data-cat="events">
+      <span class="poster-frame">
+        <img class="poster-img" src="posters/seminar.webp" width="1200" height="1600" loading="lazy" alt="Seminar poster for the Ahl-e-Hadees Committee, Mangalore" />
+      </span>
+      <span class="poster-info">
+        <span class="poster-name">Ahl-e-Hadees Seminar</span>
+        <span class="poster-org">Ahl-e-Hadees Committee, Mangalore</span>
+      </span>
+    </button>
+
+    <button class="poster-card" data-cat="courses">
+      <span class="poster-frame">
+        <img class="poster-img" src="posters/TAZKIYA CLASS 23.webp" width="1280" height="1600" loading="lazy" alt="Class poster titled Reality of Death for Radiant Wing of Huda" />
+      </span>
+      <span class="poster-info">
+        <span class="poster-name">Reality of Death</span>
+        <span class="poster-org">Radiant Wing of Huda</span>
+      </span>
+    </button>
+
+    <button class="poster-card" data-cat="courses">
+      <span class="poster-frame">
+        <img class="poster-img" src="posters/tafseer.webp" width="1600" height="1600" loading="lazy" alt="Poster announcing the Tafseer course by Islamic Education Centre" />
+      </span>
+      <span class="poster-info">
+        <span class="poster-name">Tafseer Course</span>
+        <span class="poster-org">Islamic Education Centre</span>
+      </span>
+    </button>
+
+    <button class="poster-card" data-cat="events">
+      <span class="poster-frame">
+        <img class="poster-img" src="posters/taraweeh.webp" width="1600" height="1600" loading="lazy" alt="Poster about Taraweeh Salah for Radiant Wing of Huda" />
+      </span>
+      <span class="poster-info">
+        <span class="poster-name">Taraweeh Salah</span>
+        <span class="poster-org">Radiant Wing of Huda</span>
+      </span>
+    </button>
+
+    <button class="poster-card" data-cat="courses">
+      <span class="poster-frame">
+        <img class="poster-img" src="posters/rights of a muslim.webp" width="1280" height="1600" loading="lazy" alt="Poster titled Rights of a Muslim for Radiant Wing of Huda" />
+      </span>
+      <span class="poster-info">
+        <span class="poster-name">Rights of a Muslim</span>
+        <span class="poster-org">Radiant Wing of Huda</span>
+      </span>
+    </button>
+
+    <button class="poster-card" data-cat="courses">
+      <span class="poster-frame">
+        <img class="poster-img" src="posters/ARABIC.webp" width="1280" height="1600" loading="lazy" alt="Poster announcing the Arabic course by Islamic Education Centre" />
+      </span>
+      <span class="poster-info">
+        <span class="poster-name">Arabic Course</span>
+        <span class="poster-org">Islamic Education Centre</span>
+      </span>
+    </button>
+
+    <button class="poster-card" data-cat="events">
+      <span class="poster-frame">
+        <img class="poster-img" src="posters/ahlehadeesconf1.webp" width="1280" height="1600" loading="lazy" alt="Conference poster for the Ahl-e-Hadees Committee, Mangalore" />
+      </span>
+      <span class="poster-info">
+        <span class="poster-name">Ahl-e-Hadees Conference</span>
+        <span class="poster-org">Ahl-e-Hadees Committee, Mangalore</span>
+      </span>
+    </button>
+
+    <button class="poster-card" data-cat="business">
+      <span class="poster-frame">
+        <img class="poster-img" src="posters/najdah.webp" width="1600" height="1600" loading="lazy" alt="Poster for the An-Najdah counselling service by At-Tayyib Institute" />
+      </span>
+      <span class="poster-info">
+        <span class="poster-name">An-Najdah Counselling</span>
+        <span class="poster-org">At-Tayyib Institute</span>
+      </span>
+    </button>
+
+    <button class="poster-card" data-cat="courses">
+      <span class="poster-frame">
+        <img class="poster-img" src="posters/ram26.webp" width="1600" height="1600" loading="lazy" alt="Poster titled Advices to the Youth for Radiant Wing of Huda" />
+      </span>
+      <span class="poster-info">
+        <span class="poster-name">Advices to the Youth</span>
+        <span class="poster-org">Radiant Wing of Huda</span>
+      </span>
+    </button>
+
+    <button class="poster-card" data-cat="events">
+      <span class="poster-frame">
+        <img class="poster-img" src="posters/imam shafie friday.webp" width="1280" height="1600" loading="lazy" alt="Poster on the Sunnahs of Friday for Masjid Imam ash-Shafie, Kuloor" />
+      </span>
+      <span class="poster-info">
+        <span class="poster-name">Sunnahs of Friday</span>
+        <span class="poster-org">Masjid Imam ash-Shafie, Kuloor</span>
+      </span>
+    </button>
+
+    <button class="poster-card" data-cat="events">
+      <span class="poster-frame">
+        <img class="poster-img" src="posters/7 DAYS.webp" width="1600" height="1600" loading="lazy" alt="Countdown poster reading seven days to go for a Radiant Wing of Huda sports meet" />
+      </span>
+      <span class="poster-info">
+        <span class="poster-name">Sports Meet Countdown</span>
+        <span class="poster-org">Radiant Wing of Huda</span>
+      </span>
+    </button>
+
+    <button class="poster-card" data-cat="business">
+      <span class="poster-frame">
+        <img class="poster-img" src="posters/crash course.webp" width="1280" height="1600" loading="lazy" alt="Poster advertising a Class 10 crash course for a private tuition centre" />
+      </span>
+      <span class="poster-info">
+        <span class="poster-name">Class 10 Crash Course</span>
+        <span class="poster-org">Private Tuition</span>
+      </span>
+    </button>
+
+  </div>
+
+  <div class="grid-more" id="gridMore">
+    <button class="btn-secondary" id="showAllBtn">Show all work</button>
+  </div>
+
+  <p class="sr-only" id="filterStatus" role="status" aria-live="polite"></p>
 
   <div class="portfolio-cta">
-    <p style="color: var(--muted); font-size: 0.88rem; margin-bottom: 1rem;">
-      Want to see more or collaborate on a project?
-    </p>
-    <a class="btn-primary" href="#contact">Start a project →</a>
+    <p>Want to see more, or start a project?</p>
+    <a class="btn-primary" href="#contact">Start a project</a>
   </div>
 </section>
 
@@ -1757,26 +999,31 @@
 
 <!-- ABOUT -->
 <section id="about">
-  <p class="section-label">About</p>
   <div class="about-grid">
     <div class="about-portrait">
       <div class="about-portrait-frame">
-        <img class="about-portrait-img" src="portrait.jpeg" alt="Mohammad Rishaad" /> 
-        <span class="about-initials">MR</span>
+        <img class="about-portrait-img" src="portrait.jpeg" width="900" height="1200" loading="lazy" alt="Portrait of Mohammad Rishaad" />
       </div>
-      <div class="about-accent-box">
-        <p class="about-accent-num">30+</p>
-        <p class="about-accent-label">Posters designed</p>
+      <div class="about-stats">
+        <div class="about-stat">
+          <p class="about-stat-num">10+</p>
+          <p class="about-stat-label">Clients</p>
+        </div>
+        <div class="about-stat">
+          <p class="about-stat-num">40+</p>
+          <p class="about-stat-label">Posters designed</p>
+        </div>
       </div>
     </div>
 
     <div class="about-body">
-      <h2 class="section-title" style="margin-bottom: 1.2rem;">Designed for meaning, not just aesthetics</h2>
+      <p class="section-label">About</p>
+      <h2 class="section-title">Designed for meaning, not just aesthetics</h2>
       <p>
         I'm <strong>Mohammad Rishaad</strong>, a graphic designer and Computer Science student based in Mangalore, India, working remotely with clients worldwide. I create visual content for Islamic organizations: events, seminars, countdowns, and educational media, where the design has to carry weight before a word is read.
       </p>
       <p>
-        My work spans multiple orgs including <strong>Radiant Wing of Huda (RWH)</strong>, <strong>MGM</strong>, <strong>AT-Tayyib Institute</strong>, and the <strong>Islamic Education Centre</strong>. Each has its own identity, audience, and tone. I design to match each one, not to a template.
+        My work spans multiple organizations including <strong>Radiant Wing of Huda</strong>, <strong>Muslim Growth Movement</strong>, <strong>At-Tayyib Institute</strong>, and the <strong>Islamic Education Centre</strong>, alongside small business work. Each has its own identity, audience, and tone. I design to match each one, not to a template.
       </p>
       <p>
         Outside of design, I'm studying <strong>CS &amp; Business Systems</strong> at St. Joseph Engineering College, organizing community programs, and exploring Islamic history and classical scholarship.
@@ -1791,7 +1038,7 @@
         <span class="skill-tag">Event Graphics</span>
         <span class="skill-tag">Educational Content</span>
       </div>
-      <a class="btn-primary" href="#contact">Work with me →</a>
+      <a class="btn-primary" href="#contact">Work with me</a>
     </div>
   </div>
 </section>
@@ -1800,8 +1047,10 @@
 
 <!-- PROCESS -->
 <section class="process-section">
-  <p class="section-label">How it works</p>
-  <h2 class="section-title" style="margin-bottom: 0;">Simple, three steps</h2>
+  <div class="section-head">
+    <p class="section-label">How it works</p>
+    <h2 class="section-title" style="margin-bottom:0;">Simple, three steps</h2>
+  </div>
   <div class="process-grid">
     <div class="process-step">
       <p class="process-num">01</p>
@@ -1819,33 +1068,43 @@
       <p class="process-desc">Print-ready PDF plus sized exports for Instagram, WhatsApp status, and stories. Source file on request.</p>
     </div>
   </div>
+  <div class="price-bar">
+    <span class="price-amount">From $20 USD</span>
+    <span class="price-note">per poster, or the local equivalent. Course series, campaigns, and bulk sets quoted on request.</span>
+  </div>
 </section>
 
 <hr class="section-divider" />
 
 <!-- CONTACT -->
 <section id="contact">
-  <p class="section-label">Contact</p>
-  <h2 class="section-title">Got a project in mind?</h2>
+  <div class="section-head">
+    <p class="section-label">Contact</p>
+    <h2 class="section-title">Got a project in mind?</h2>
+  </div>
   <div class="contact-grid">
     <div>
       <p class="contact-intro">
-        I'm open to design work for Islamic organizations, events, educational media, and community projects, remotely with clients anywhere. Reach out, even if you're not sure what you need yet.
+        I'm open to design work for Islamic organizations, events, educational media, small businesses, and community projects, remotely with clients anywhere. Reach out, even if you're not sure what you need yet.
       </p>
       <div class="contact-methods">
         <a class="contact-method" href="mailto:mohammadrishaad11@gmail.com">
-          <div class="contact-method-icon">✉</div>
-          <div>
-            <p class="contact-method-label">Email</p>
-            <p class="contact-method-value">mohammadrishaad11@gmail.com</p>
-          </div>
+          <span class="contact-method-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          </span>
+          <span>
+            <span class="contact-method-label">Email</span>
+            <span class="contact-method-value">mohammadrishaad11@gmail.com</span>
+          </span>
         </a>
-        <a class="contact-method" href="https://wa.me/919243308633" target="_blank">
-          <div class="contact-method-icon">💬</div>
-          <div>
-            <p class="contact-method-label">WhatsApp</p>
-            <p class="contact-method-value">+91 92433 08633</p>
-          </div>
+        <a class="contact-method" href="https://wa.me/919243308633" target="_blank" rel="noopener noreferrer">
+          <span class="contact-method-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </span>
+          <span>
+            <span class="contact-method-label">WhatsApp</span>
+            <span class="contact-method-value">+91 92433 08633</span>
+          </span>
         </a>
       </div>
     </div>
@@ -1854,17 +1113,21 @@
       <div class="contact-form">
         <div class="form-group">
           <label for="name">Your name</label>
-          <input type="text" id="name" placeholder="e.g. Abdullah Ahmed" />
+          <input type="text" id="name" autocomplete="name" placeholder="e.g. Abdullah Ahmed" />
         </div>
         <div class="form-group">
           <label for="org">Organization (optional)</label>
-          <input type="text" id="org" placeholder="e.g. Al-Noor Masjid" />
+          <input type="text" id="org" autocomplete="organization" placeholder="e.g. Al-Noor Masjid" />
         </div>
         <div class="form-group">
           <label for="message">Tell me about your project</label>
           <textarea id="message" placeholder="What do you need designed? Event poster, seminar graphic, social media..."></textarea>
         </div>
-        <button class="form-submit" onclick="handleSubmit()">Send message →</button>
+        <button class="form-submit" id="submitBtn">Send message</button>
+        <div class="form-fallback" id="formFallback">
+          If your mail app did not open, email me directly at <strong>mohammadrishaad11@gmail.com</strong>
+          <br /><button class="copy-btn" id="copyBtn">Copy email address</button>
+        </div>
       </div>
     </div>
   </div>
@@ -1873,220 +1136,166 @@
 <!-- FOOTER -->
 <footer>
   <p>© 2026 Mohammad Rishaad. All rights reserved.</p>
-  <div style="display:flex; gap: 1.5rem;">
+  <div style="display:flex; gap:1.5rem; flex-wrap:wrap;">
     <a href="#home">Home</a>
-    <a href="#portfolio">Portfolio</a>
+    <a href="#portfolio">Work</a>
     <a href="#about">About</a>
     <a href="#contact">Contact</a>
   </div>
 </footer>
 
 <!-- LIGHTBOX -->
-<div id="lightbox">
-  <button id="lightbox-close" onclick="closeLightbox()">✕</button>
-  <img id="lightbox-img" src="" alt="Poster preview" />
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Poster viewer">
+  <button class="lb-btn" id="lb-close" aria-label="Close viewer">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+  </button>
+  <button class="lb-btn" id="lb-prev" aria-label="Previous poster">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+  </button>
+  <button class="lb-btn" id="lb-next" aria-label="Next poster">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+  </button>
+  <img id="lightbox-img" src="" alt="" />
+  <div class="lb-caption">
+    <p class="lb-title" id="lb-title"></p>
+    <p class="lb-org" id="lb-org"></p>
+    <p class="lb-counter" id="lb-counter"></p>
+  </div>
 </div>
 
 <script>
-  // ── CUSTOM CURSOR ──
-  const cursor = document.getElementById('cursor');
-  const cursorRing = document.getElementById('cursor-ring');
-  let mx = 0, my = 0, rx = 0, ry = 0;
-  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-  (function animateCursor() {
-    cursor.style.left = mx + 'px';
-    cursor.style.top  = my + 'px';
-    rx += (mx - rx) * 0.10;
-    ry += (my - ry) * 0.10;
-    cursorRing.style.left = rx + 'px';
-    cursorRing.style.top  = ry + 'px';
-    requestAnimationFrame(animateCursor);
-  })();
-  document.querySelectorAll('a, button, .poster-card, .filter-btn, .carousel-wrap').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      cursor.style.transform = 'translate(-50%,-50%) scale(1.6)';
-      cursorRing.style.borderColor = 'rgba(182,255,78,0.7)';
-      cursorRing.style.width = '48px';
-      cursorRing.style.height = '48px';
-    });
-    el.addEventListener('mouseleave', () => {
-      cursor.style.transform = 'translate(-50%,-50%) scale(1)';
-      cursorRing.style.borderColor = 'rgba(182,255,78,0.35)';
-      cursorRing.style.width = '32px';
-      cursorRing.style.height = '32px';
-    });
-  });
-
-  // ── FONT SHUFFLE on "speaks" ──
-  const speaksEl = document.getElementById('word-speaks');
-  const speaksGhost = document.querySelector('.word-speaks-ghost');
-  const speaksMark = speaksEl.querySelector('.baseline-mark');
-  const ghostMark = speaksGhost.querySelector('.baseline-mark');
-  const shuffleFonts = [
-    "'Bebas Neue', sans-serif",
-    "'Oswald', sans-serif",
-    "'Abril Fatface', serif",
-    "'Syne', sans-serif",
-    "'DM Serif Display', serif",
-    "'Cormorant Garamond', serif",
-    "'Playfair Display', serif",
-  ];
-  const finalFont = "'Playfair Display', serif";
-  let fi = 0;
-  function alignSpeaksBaseline() {
-    speaksEl.style.transform = 'none';
-    const ghostY = ghostMark.getBoundingClientRect().top;
-    const overlayY = speaksMark.getBoundingClientRect().top;
-    speaksEl.style.transform = `translateY(${ghostY - overlayY}px)`;
-  }
-  function shuffleNext() {
-    if (fi >= shuffleFonts.length) {
-      speaksEl.style.fontFamily = finalFont;
-      alignSpeaksBaseline();
-      speaksEl.style.opacity = '1';
-      return;
-    }
-    speaksEl.style.opacity = '0.4';
-    setTimeout(() => {
-      speaksEl.style.fontFamily = shuffleFonts[fi];
-      alignSpeaksBaseline();
-      speaksEl.style.opacity = '1';
-      fi++;
-      setTimeout(shuffleNext, 600);
-    }, 60);
-  }
-  alignSpeaksBaseline();
-  window.addEventListener('load', () => setTimeout(shuffleNext, 500));
-  window.addEventListener('resize', alignSpeaksBaseline);
-
-  // Mobile menu
+  // ── MOBILE MENU ──
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
-  hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
-  function closeMobile() { mobileMenu.classList.remove('open'); }
-
-  // Lightbox (works with actual <img> cards)
-  const cards = document.querySelectorAll('.poster-card');
-  cards.forEach(card => {
-    card.addEventListener('click', () => {
-      const img = card.querySelector('img.poster-img');
-      if (!img) return;
-      document.getElementById('lightbox-img').src = img.src;
-      document.getElementById('lightbox').classList.add('open');
-    });
+  hamburger.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
   });
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }));
+
+  // ── FILTER ──
+  const grid = document.getElementById('posterGrid');
+  const allCards = [...grid.querySelectorAll('.poster-card')];
+  const filterBtns = [...document.querySelectorAll('.filter-btn')];
+  const filterStatus = document.getElementById('filterStatus');
+  const gridMore = document.getElementById('gridMore');
+  const showAllBtn = document.getElementById('showAllBtn');
+  const INITIAL = 6;
+  let visible = [];
+  let currentCat = 'all';
+  let expanded = false;
+
+  function render() {
+    const inCat = allCards.filter(c => currentCat === 'all' || c.dataset.cat === currentCat);
+    allCards.forEach(c => { c.hidden = !inCat.includes(c); });
+    inCat.forEach((c, i) => c.classList.toggle('beyond', !expanded && i >= INITIAL));
+    visible = inCat.filter(c => !c.classList.contains('beyond'));
+    const hiddenCount = inCat.length - visible.length;
+    gridMore.hidden = hiddenCount === 0;
+    showAllBtn.textContent = 'Show all ' + inCat.length + ' pieces';
+    filterStatus.textContent = visible.length + ' of ' + inCat.length + ' pieces shown';
+  }
+  function applyFilter(cat) {
+    currentCat = cat;
+    expanded = false;
+    filterBtns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.filter === cat)));
+    render();
+  }
+  filterBtns.forEach(b => b.addEventListener('click', () => applyFilter(b.dataset.filter)));
+  showAllBtn.addEventListener('click', () => { expanded = true; render(); showAllBtn.blur(); });
+  render();
+
+  // ── LIGHTBOX ──
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  const lbTitle = document.getElementById('lb-title');
+  const lbOrg = document.getElementById('lb-org');
+  const lbCounter = document.getElementById('lb-counter');
+  let lbIndex = 0;
+  let lastFocused = null;
+
+  function showAt(i) {
+    if (!visible.length) return;
+    lbIndex = (i + visible.length) % visible.length;
+    const card = visible[lbIndex];
+    const img = card.querySelector('.poster-img');
+    lbImg.src = img.src;
+    lbImg.alt = img.alt;
+    lbTitle.textContent = card.querySelector('.poster-name').textContent;
+    lbOrg.textContent = card.querySelector('.poster-org').textContent;
+    lbCounter.textContent = (lbIndex + 1) + ' / ' + visible.length;
+  }
+  function openLightbox(card) {
+    lastFocused = document.activeElement;
+    showAt(visible.indexOf(card));
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    document.getElementById('lb-close').focus();
+  }
   function closeLightbox() {
-    document.getElementById('lightbox').classList.remove('open');
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+    if (lastFocused) lastFocused.focus();
   }
-  document.getElementById('lightbox').addEventListener('click', e => {
-    if (e.target === e.currentTarget) closeLightbox();
+  allCards.forEach(card => card.addEventListener('click', () => openLightbox(card)));
+  document.getElementById('lb-close').addEventListener('click', closeLightbox);
+  document.getElementById('lb-prev').addEventListener('click', () => showAt(lbIndex - 1));
+  document.getElementById('lb-next').addEventListener('click', () => showAt(lbIndex + 1));
+  lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') showAt(lbIndex - 1);
+    if (e.key === 'ArrowRight') showAt(lbIndex + 1);
   });
 
-  // ── POSTER CAROUSEL: auto-scroll + drag-to-scroll + touch swipe ──
-  function initCarousel(wrap, direction, durationSeconds) {
-    const track = wrap.querySelector('.carousel-track');
-    let paused = false;
-    let isDown = false;
-    let moved = false;
-    let startX = 0;
-    let startScroll = 0;
-    let lastTime = null;
-    let resumeTimer = null;
-
-    function wrapLoop() {
-      const half = track.scrollWidth / 2;
-      if (direction === 1 && wrap.scrollLeft >= half) wrap.scrollLeft -= half;
-      if (direction === -1 && wrap.scrollLeft <= 0) wrap.scrollLeft += half;
-    }
-
-    if (direction === -1) wrap.scrollLeft = track.scrollWidth / 2;
-
-    function frame(ts) {
-      if (lastTime === null) lastTime = ts;
-      const dt = (ts - lastTime) / 1000;
-      lastTime = ts;
-      if (!paused && !isDown) {
-        const half = track.scrollWidth / 2;
-        wrap.scrollLeft += direction * (half / durationSeconds) * dt;
-        wrapLoop();
-      }
-      requestAnimationFrame(frame);
-    }
-    requestAnimationFrame(frame);
-
-    wrap.addEventListener('mouseenter', () => { paused = true; });
-    wrap.addEventListener('mouseleave', () => { paused = false; });
-
-    wrap.addEventListener('dragstart', e => e.preventDefault());
-    wrap.addEventListener('pointerdown', e => {
-      if (e.pointerType !== 'mouse') return;
-      isDown = true;
-      moved = false;
-      startX = e.clientX;
-      startScroll = wrap.scrollLeft;
-      wrap.classList.add('dragging');
-    });
-    window.addEventListener('pointermove', e => {
-      if (!isDown) return;
-      const dx = e.clientX - startX;
-      if (Math.abs(dx) > 5) moved = true;
-      wrap.scrollLeft = startScroll - dx;
-      wrapLoop();
-    });
-    window.addEventListener('pointerup', () => {
-      if (!isDown) return;
-      isDown = false;
-      wrap.classList.remove('dragging');
-    });
-
-    // Swallow the click that follows a drag so it doesn't open the lightbox
-    wrap.addEventListener('click', e => {
-      if (moved) { e.stopPropagation(); moved = false; }
-    }, true);
-
-    // Native touch swipe already scrolls the wrap, so just pause auto-scroll during it
-    wrap.addEventListener('touchstart', () => {
-      paused = true;
-      clearTimeout(resumeTimer);
-    }, { passive: true });
-    wrap.addEventListener('touchend', () => {
-      resumeTimer = setTimeout(() => { paused = false; }, 1200);
-    }, { passive: true });
-  }
-
-  window.addEventListener('load', () => {
-    document.querySelectorAll('.carousel-scroll').forEach(scroller => {
-      const track = scroller.querySelector('.carousel-track');
-      const isLeft = track.classList.contains('left');
-      initCarousel(scroller, isLeft ? -1 : 1, isLeft ? 34 : 38);
-    });
-  });
-
-  // Form submit placeholder
-  function handleSubmit() {
+  // ── CONTACT FORM ──
+  // mailto: is silent when no mail client is registered, so reveal a
+  // copyable address immediately after the attempt.
+  const EMAIL = 'mohammadrishaad11@gmail.com';
+  document.getElementById('submitBtn').addEventListener('click', () => {
     const name = document.getElementById('name').value.trim();
     const org = document.getElementById('org').value.trim();
     const msg = document.getElementById('message').value.trim();
-    if (!name || !msg) { alert('Please fill in your name and message.'); return; }
+    if (!name || !msg) {
+      alert('Please fill in your name and message.');
+      return;
+    }
     const subject = encodeURIComponent('Portfolio enquiry from ' + name);
     const body = encodeURIComponent(
       'Name: ' + name + '\n' +
       (org ? 'Organization: ' + org + '\n' : '') +
       '\n' + msg
     );
-    window.location.href = 'mailto:mohammadrishaad11@gmail.com?subject=' + subject + '&body=' + body;
-  }
-
-  // Nav active state on scroll
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a');
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
-    navLinks.forEach(a => {
-      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--white)' : '';
-    });
+    window.location.href = 'mailto:' + EMAIL + '?subject=' + subject + '&body=' + body;
+    setTimeout(() => document.getElementById('formFallback').classList.add('show'), 900);
   });
+  document.getElementById('copyBtn').addEventListener('click', async (e) => {
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+      e.target.textContent = 'Copied';
+      setTimeout(() => { e.target.textContent = 'Copy email address'; }, 1800);
+    } catch (err) {
+      e.target.textContent = EMAIL;
+    }
+  });
+
+  // ── NAV SCROLL SPY ──
+  const spySections = [...document.querySelectorAll('section[id]')];
+  const navLinks = [...document.querySelectorAll('.nav-links a')];
+  const spy = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (!en.isIntersecting) return;
+      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + en.target.id));
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  spySections.forEach(s => spy.observe(s));
 </script>
 </body>
 </html>
