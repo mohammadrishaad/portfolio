@@ -766,13 +766,10 @@
      scripts fail to load, the page is fully functional and fully visible. -->
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/Flip.min.js"></script>
 <script>
 (function () {
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
   gsap.registerPlugin(ScrollTrigger);
-  var hasFlip = typeof Flip !== 'undefined';
-  if (hasFlip) gsap.registerPlugin(Flip);
 
   // GSAP is not covered by the CSS reduced-motion block, so gate it here too.
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -803,7 +800,7 @@
     .from('.hero-actions',  { y: 18, opacity: 0 }, '-=0.68');
 
   // ── 2. Poster grid reveal ─────────────────────────────────────────────
-  // Only ever animates toward visible, so it can never fight the Flip
+  // Only ever animates toward visible, so it can never fight the filter
   // transition below (which also ends at opacity 1).
   gsap.set('.poster-card', { opacity: 0, y: 42 });
   ScrollTrigger.batch('.poster-card', {
@@ -904,42 +901,50 @@
   });
 
   // ── 8. FLIP grid transition on filter / show-all ──────────────────────
-  if (hasFlip) {
-    window.__gridTransition = function (apply) {
-      var cards = gsap.utils.toArray('.poster-card');
-      var state = Flip.getState(cards);
-      var h0 = grid.offsetHeight;
-
-      apply();
-
-      var h1 = grid.offsetHeight;
-      // absolute:true collapses the grid mid-flight, so drive the height
-      // manually and hand it back to CSS at the end.
-      gsap.fromTo(grid, { height: h0 },
-        { height: h1, duration: 0.62, ease: 'power2.inOut', clearProps: 'height' });
-
-      Flip.from(state, {
-        duration: 0.62,
-        ease: 'power2.inOut',
-        absolute: true,
-        scale: false,
-        onEnter: function (els) {
-          return gsap.fromTo(els,
-            { opacity: 0, scale: 0.88 },
-            { opacity: 1, scale: 1, duration: 0.5, stagger: 0.045, ease: 'power3.out' });
-        },
-        onLeave: function (els) {
-          return gsap.to(els, { opacity: 0, scale: 0.88, duration: 0.32, ease: 'power2.in' });
-        },
-        onComplete: function () {
-          gsap.set(cards.filter(function (c) {
-            return !c.hidden && !c.classList.contains('beyond');
-          }), { opacity: 1, y: 0, scale: 1 });
-          ScrollTrigger.refresh();
-        }
+  // Filtering: fade the current set out, swap, fade the new set in.
+  //
+  // This deliberately does NOT use Flip. A FLIP transition has to lift the
+  // cards to position:absolute while they travel, and here that collided with
+  // ScrollTrigger's scroll measurement and with the page height changing as
+  // the grid resizes. Flip ended up computing deltas in the thousands of
+  // pixels and threw cards outside the grid at the wrong size. Keeping every
+  // card in normal flow makes that whole class of bug impossible, and an
+  // interrupted run can only ever land on the correct final state.
+  window.__gridTransition = function (apply) {
+    var cards = gsap.utils.toArray('.poster-card');
+    function shown() {
+      return cards.filter(function (card) {
+        return !card.hidden && !card.classList.contains('beyond');
       });
-    };
-  }
+    }
+
+    gsap.killTweensOf(cards);
+    gsap.killTweensOf(grid);
+
+    var leaving = shown();
+    var h0 = grid.offsetHeight;
+
+    function swap() {
+      apply();
+      var entering = shown();
+      var h1 = grid.offsetHeight;
+
+      // Hold the container so everything below does not jump as the set changes.
+      gsap.fromTo(grid, { height: h0 },
+        { height: h1, duration: 0.34, ease: 'power2.out', clearProps: 'height' });
+
+      gsap.fromTo(entering,
+        { opacity: 0, y: 16 },
+        {
+          opacity: 1, y: 0, duration: 0.45, stagger: 0.045, ease: 'power3.out',
+          clearProps: 'transform',
+          onComplete: function () { ScrollTrigger.refresh(); }
+        });
+    }
+
+    if (!leaving.length) { swap(); return; }
+    gsap.to(leaving, { opacity: 0, y: 10, duration: 0.18, ease: 'power2.in', onComplete: swap });
+  };
 
   window.addEventListener('load', function () { ScrollTrigger.refresh(); });
 
