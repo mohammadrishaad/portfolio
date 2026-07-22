@@ -109,6 +109,13 @@
     border: 1px solid rgba(255,255,255,0.12);
     box-shadow: 0 18px 40px -14px rgba(0,0,0,0.7);
   }
+  nav.nav-scrolled {
+    padding: 0.5rem 0.65rem 0.5rem 1.3rem;
+    background: rgba(16,12,8,0.78);
+    border-color: rgba(255,255,255,0.16);
+    box-shadow: 0 14px 34px -14px rgba(0,0,0,0.85);
+  }
+  nav { transition: padding 0.3s var(--transition), background 0.3s, box-shadow 0.3s, border-color 0.3s; }
   .nav-logo {
     font-family: var(--font-display);
     font-size: 1.1rem;
@@ -341,9 +348,15 @@
   .hero-headline em {
     font-style: italic;
     background: var(--gradient-text);
+    background-size: 220% 100%;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+    animation: gradientDrift 9s ease-in-out infinite alternate;
+  }
+  @keyframes gradientDrift {
+    from { background-position:   0% 0; }
+    to   { background-position: 100% 0; }
   }
   .hero-sub {
     font-size: 1.02rem;
@@ -447,7 +460,9 @@
     width: 100%; height: 100%;
     object-fit: contain;
     display: block;
+    transition: transform 0.55s cubic-bezier(0.4,0,0.2,1);
   }
+  .poster-card:hover .poster-img { transform: scale(1.05); }
   .poster-frame { display: block; }
   .poster-info { display: block; padding: 0.85rem 0.1rem 0; }
   .poster-name {
@@ -588,12 +603,19 @@
     padding-top: 1.7rem;
     border-top: 1px solid var(--border);
   }
+  /* Registered so the rule width can be tweened on scroll as well as hover. */
+  @property --rule-w {
+    syntax: '<length>';
+    inherits: false;
+    initial-value: 46px;
+  }
   /* The rule draws across on hover instead of the whole card lifting. */
   .process-step::before {
     content: '';
     position: absolute;
     top: -1px; left: 0;
-    width: 46px; height: 2px;
+    width: var(--rule-w, 46px);
+    height: 2px;
     background: var(--gradient-brand);
     transition: width 0.45s cubic-bezier(0.4,0,0.2,1);
   }
@@ -1329,7 +1351,7 @@
   let currentCat = 'all';
   let expanded = false;
 
-  function render() {
+  function applyRender() {
     const inCat = allCards.filter(c => currentCat === 'all' || c.dataset.cat === currentCat);
     allCards.forEach(c => { c.hidden = !inCat.includes(c); });
     inCat.forEach((c, i) => c.classList.toggle('beyond', !expanded && i >= INITIAL));
@@ -1339,14 +1361,20 @@
     showAllBtn.textContent = 'Show all ' + inCat.length + ' pieces';
     filterStatus.textContent = visible.length + ' of ' + inCat.length + ' pieces shown';
   }
+  // __gridTransition is installed by the GSAP layer below when it loads.
+  // Without it the grid still updates, just instantly.
+  function render(animate) {
+    if (animate && window.__gridTransition) window.__gridTransition(applyRender);
+    else applyRender();
+  }
   function applyFilter(cat) {
     currentCat = cat;
     expanded = false;
     filterBtns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.filter === cat)));
-    render();
+    render(true);
   }
   filterBtns.forEach(b => b.addEventListener('click', () => applyFilter(b.dataset.filter)));
-  showAllBtn.addEventListener('click', () => { expanded = true; render(); showAllBtn.blur(); });
+  showAllBtn.addEventListener('click', () => { expanded = true; render(true); showAllBtn.blur(); });
   render();
 
   // ── LIGHTBOX ──
@@ -1375,6 +1403,7 @@
     lb.classList.add('open');
     document.body.style.overflow = 'hidden';
     document.getElementById('lb-close').focus();
+    lb.dispatchEvent(new CustomEvent('lightbox:open'));
   }
   function closeLightbox() {
     lb.classList.remove('open');
@@ -1435,6 +1464,186 @@
     });
   }, { rootMargin: '-45% 0px -50% 0px' });
   spySections.forEach(s => spy.observe(s));
+</script>
+
+<!-- Motion layer. Everything below is progressive enhancement: if these
+     scripts fail to load, the page is fully functional and fully visible. -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/Flip.min.js"></script>
+<script>
+(function () {
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+  gsap.registerPlugin(ScrollTrigger);
+  var hasFlip = typeof Flip !== 'undefined';
+  if (hasFlip) gsap.registerPlugin(Flip);
+
+  // GSAP is not covered by the CSS reduced-motion block, so gate it here too.
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  // rAF is throttled in background tabs, so a from() tween would park content
+  // at opacity 0 with no ticker running to bring it back. Do not set any
+  // hidden start state until the tab is actually being looked at.
+  if (document.visibilityState === 'visible') {
+    start();
+  } else {
+    document.addEventListener('visibilitychange', function onVis() {
+      if (document.visibilityState !== 'visible') return;
+      document.removeEventListener('visibilitychange', onVis);
+      start();
+    });
+  }
+
+  function start() {
+  var grid = document.getElementById('posterGrid');
+
+  // ── 1. Hero entrance ──────────────────────────────────────────────────
+  gsap.timeline({ defaults: { ease: 'power3.out', duration: 0.85 } })
+    .from('nav', { top: '-3rem', opacity: 0, duration: 0.7, clearProps: 'top' })
+    .from('.hero-eyebrow',  { y: 18, opacity: 0 }, '-=0.45')
+    .from('.hero-headline', { y: 28, opacity: 0 }, '-=0.62')
+    .from('.hero-sub',      { y: 20, opacity: 0 }, '-=0.66')
+    .from('.hero-clients',  { y: 18, opacity: 0 }, '-=0.68')
+    .from('.hero-actions',  { y: 18, opacity: 0 }, '-=0.68');
+
+  // ── 2. Poster grid reveal ─────────────────────────────────────────────
+  // Only ever animates toward visible, so it can never fight the Flip
+  // transition below (which also ends at opacity 1).
+  gsap.set('.poster-card', { opacity: 0, y: 42 });
+  ScrollTrigger.batch('.poster-card', {
+    start: 'top 90%',
+    onEnter: function (batch) {
+      gsap.to(batch, {
+        opacity: 1, y: 0, duration: 0.75,
+        stagger: 0.075, ease: 'power3.out', overwrite: 'auto'
+      });
+    }
+  });
+
+  // ── 3. Section heads and content groups ───────────────────────────────
+  function revealGroup(sel, targets) {
+    var host = document.querySelector(sel);
+    if (!host) return;
+    var els = typeof targets === 'string'
+      ? gsap.utils.toArray(targets)
+      : gsap.utils.toArray(host.children);
+    if (!els.length) return;
+    gsap.from(els, {
+      y: 26, opacity: 0, duration: 0.8, stagger: 0.09, ease: 'power3.out',
+      scrollTrigger: { trigger: host, start: 'top 86%', once: true }
+    });
+  }
+  gsap.utils.toArray('.section-head').forEach(function (head) {
+    gsap.from(head.children, {
+      y: 26, opacity: 0, duration: 0.8, stagger: 0.09, ease: 'power3.out',
+      scrollTrigger: { trigger: head, start: 'top 86%', once: true }
+    });
+  });
+  revealGroup('.filter-bar', '.filter-btn');
+  revealGroup('.about-portrait');
+  revealGroup('.about-body');
+  revealGroup('.contact-methods');
+
+  // ── 4. Stat count-up ──────────────────────────────────────────────────
+  gsap.utils.toArray('.about-stat-num').forEach(function (el) {
+    var raw = el.textContent.trim();
+    var target = parseInt(raw, 10);
+    if (isNaN(target)) return;
+    var suffix = raw.replace(/[0-9]/g, '');
+    var counter = { v: 0 };
+    gsap.to(counter, {
+      v: target, duration: 1.7, ease: 'power2.out',
+      scrollTrigger: { trigger: el, start: 'top 90%', once: true },
+      onUpdate: function () { el.textContent = Math.round(counter.v) + suffix; }
+    });
+  });
+
+  // ── 5. Process columns, with the rule drawing out ─────────────────────
+  gsap.utils.toArray('.process-step').forEach(function (step, i) {
+    gsap.timeline({
+      scrollTrigger: { trigger: '.process-grid', start: 'top 84%', once: true },
+      delay: i * 0.12
+    })
+      .from(step, { y: 26, opacity: 0, duration: 0.7, ease: 'power3.out' })
+      .fromTo(step, { '--rule-w': '0px' }, { '--rule-w': '46px', duration: 0.5, ease: 'power2.out' }, '-=0.35');
+  });
+  ['.price-bar', '.portfolio-cta', '.contact-form'].forEach(function (sel) {
+    var el = document.querySelector(sel);
+    if (!el) return;
+    gsap.from(el, {
+      y: 26, opacity: 0, duration: 0.8, ease: 'power3.out',
+      scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+    });
+  });
+
+  // ── 6. Nav condense ───────────────────────────────────────────────────
+  var navEl = document.querySelector('nav');
+  ScrollTrigger.create({
+    start: 110,
+    onEnter:     function () { navEl.classList.add('nav-scrolled'); },
+    onLeaveBack: function () { navEl.classList.remove('nav-scrolled'); }
+  });
+
+  // ── 7. Lightbox scale-in ──────────────────────────────────────────────
+  var lb = document.getElementById('lightbox');
+  lb.addEventListener('lightbox:open', function () {
+    gsap.fromTo('#lightbox-img',
+      { scale: 0.92, opacity: 0 },
+      { scale: 1, opacity: 1, duration: 0.42, ease: 'power3.out' });
+    gsap.fromTo('.lb-caption',
+      { y: 14, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.4, delay: 0.08, ease: 'power3.out' });
+  });
+
+  // ── 8. FLIP grid transition on filter / show-all ──────────────────────
+  if (hasFlip) {
+    window.__gridTransition = function (apply) {
+      var cards = gsap.utils.toArray('.poster-card');
+      var state = Flip.getState(cards);
+      var h0 = grid.offsetHeight;
+
+      apply();
+
+      var h1 = grid.offsetHeight;
+      // absolute:true collapses the grid mid-flight, so drive the height
+      // manually and hand it back to CSS at the end.
+      gsap.fromTo(grid, { height: h0 },
+        { height: h1, duration: 0.62, ease: 'power2.inOut', clearProps: 'height' });
+
+      Flip.from(state, {
+        duration: 0.62,
+        ease: 'power2.inOut',
+        absolute: true,
+        scale: false,
+        onEnter: function (els) {
+          return gsap.fromTo(els,
+            { opacity: 0, scale: 0.88 },
+            { opacity: 1, scale: 1, duration: 0.5, stagger: 0.045, ease: 'power3.out' });
+        },
+        onLeave: function (els) {
+          return gsap.to(els, { opacity: 0, scale: 0.88, duration: 0.32, ease: 'power2.in' });
+        },
+        onComplete: function () {
+          gsap.set(cards.filter(function (c) {
+            return !c.hidden && !c.classList.contains('beyond');
+          }), { opacity: 1, y: 0, scale: 1 });
+          ScrollTrigger.refresh();
+        }
+      });
+    };
+  }
+
+  window.addEventListener('load', function () { ScrollTrigger.refresh(); });
+
+  // Belt and braces: if the ticker somehow never advances, force every intro
+  // tween to its end state so nothing is left permanently invisible.
+  setTimeout(function () {
+    if (gsap.ticker.frame > 1) return;
+    gsap.globalTimeline.getChildren(true, true, false).forEach(function (t) { t.progress(1); });
+    gsap.set('.poster-card', { opacity: 1, y: 0 });
+  }, 2500);
+  }
+})();
 </script>
 </body>
 </html>
