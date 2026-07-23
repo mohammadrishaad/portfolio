@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=2" />
+<link rel="stylesheet" href="styles.css?v=3" />
 </head>
 <body>
 
@@ -81,6 +81,7 @@
   </div>
 
   <div class="work-toggle" role="tablist" aria-label="Choose work type">
+    <span class="work-toggle-thumb" aria-hidden="true"></span>
     <button class="work-tab" id="tab-graphics" role="tab" aria-selected="true" aria-controls="panel-graphics">Graphics</button>
     <button class="work-tab" id="tab-apps" role="tab" aria-selected="false" aria-controls="panel-apps" tabindex="-1">Apps</button>
   </div>
@@ -772,10 +773,27 @@
   // ── WORK TYPE TOGGLE (Graphics / Apps) ──
   const workTabs = [...document.querySelectorAll('.work-tab')];
   const workToggle = document.querySelector('.work-toggle');
+  const workThumb = document.querySelector('.work-toggle-thumb');
   const panelGraphics = document.getElementById('panel-graphics');
   const panelApps = document.getElementById('panel-apps');
   const workOrder = ['graphics', 'apps'];
   let appsRevealed = false;
+
+  // Slide the glass pill onto the active tab. animate=false snaps it there with
+  // no transition (initial paint, font swap, resize); animate=true lets the CSS
+  // spring carry it across.
+  function moveThumb(animate) {
+    const active = workTabs.find(t => t.getAttribute('aria-selected') === 'true');
+    if (!active || !workThumb) return;
+    if (!animate) workThumb.style.transition = 'none';
+    const tr = workToggle.getBoundingClientRect();
+    const ar = active.getBoundingClientRect();
+    workThumb.style.width = ar.width + 'px';
+    workThumb.style.height = ar.height + 'px';
+    workThumb.style.transform =
+      'translate(' + (ar.left - tr.left) + 'px,' + (ar.top - tr.top) + 'px)';
+    if (!animate) { void workThumb.offsetWidth; workThumb.style.transition = ''; }
+  }
 
   function selectWork(which, focusTab) {
     workTabs.forEach(t => {
@@ -784,6 +802,7 @@
       t.tabIndex = on ? 0 : -1;
       if (on && focusTab) t.focus();
     });
+    moveThumb(true);
     panelGraphics.hidden = which !== 'graphics';
     panelApps.hidden = which !== 'apps';
     // The screen thumbnails live in a display:none panel until first shown, so
@@ -804,6 +823,16 @@
     const cur = workTabs.findIndex(t => t.getAttribute('aria-selected') === 'true');
     const dir = e.key === 'ArrowRight' ? 1 : -1;
     selectWork(workOrder[(cur + dir + workOrder.length) % workOrder.length], true);
+  });
+  // Place the pill on load, and re-snap it when the tab widths can change
+  // (web font swap-in, viewport resize) so it never drifts off the active tab.
+  moveThumb(false);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => moveThumb(false));
+  window.addEventListener('load', () => moveThumb(false));
+  let thumbResizeT;
+  window.addEventListener('resize', () => {
+    clearTimeout(thumbResizeT);
+    thumbResizeT = setTimeout(() => moveThumb(false), 120);
   });
 
   // ── LIGHTBOX ──
