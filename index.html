@@ -4,12 +4,12 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Mohammad Rishaad | Graphic Designer</title>
-<meta name="description" content="Mohammad Rishaad, graphic designer specializing in Islamic event posters, brand materials, and educational media. Remote work with clients worldwide, from $15 USD per poster." />
+<meta name="description" content="Mohammad Rishaad, graphic designer specializing in event posters, brand materials, and educational media. Remote work with clients worldwide, from $15 USD per poster." />
 <!-- Absolute URLs required: WhatsApp / LinkedIn / Fiverr will not resolve relative paths when building a link preview card. -->
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://mohammadrishaad.github.io/portfolio/" />
 <meta property="og:title" content="Mohammad Rishaad | Graphic Designer" />
-<meta property="og:description" content="Islamic event posters, brand materials, and educational media. Bold typography, intentional visual language. Remote work worldwide, from $15 USD." />
+<meta property="og:description" content="Event posters, brand materials, and educational media. Bold typography, intentional visual language. Remote work worldwide, from $15 USD." />
 <meta property="og:image" content="https://mohammadrishaad.github.io/portfolio/portrait.jpeg" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23100c08'/><text x='32' y='46' font-family='Georgia,serif' font-size='40' font-weight='700' fill='%23ff9408' text-anchor='middle'>M</text></svg>" />
@@ -52,13 +52,13 @@
     <p class="hero-eyebrow">Graphic Designer &amp; Visual Storyteller</p>
     <h1 class="hero-headline">Design that <em>speaks</em> before you read it</h1>
     <p class="hero-sub">
-      I design Islamic event posters, brand materials, and educational media for community organizations and small businesses. Remote work with clients worldwide, starting at $15 USD.
+      I design event posters, brand materials, and educational media for organizations and small businesses. Remote work with clients worldwide, starting at $15 USD.
     </p>
     <div class="hero-clients">
       <span class="hero-clients-label">Designed for</span>
       <ul class="hero-clients-list">
         <li>Radiant Wing of Huda</li>
-        <li>Muslim Growth Movement</li>
+        <li>Tarbiyah Arabic Institute</li>
         <li>Islamic Education Centre</li>
         <li>At-Tayyib Institute</li>
       </ul>
@@ -76,9 +76,16 @@
 <section id="portfolio">
   <div class="section-head">
     <p class="section-label">Selected work</p>
-    <h2 class="section-title">Posters &amp; graphics</h2>
-    <p class="section-sub">Sixteen selected pieces across events, courses, and business work. Click any poster to view it full size.</p>
+    <h2 class="section-title">Posters &amp; app design</h2>
+    <p class="section-sub">Two sides of what I do: event graphics and brand work for organizations and businesses, and interface design for apps. Switch between them below.</p>
   </div>
+
+  <div class="work-toggle" role="tablist" aria-label="Choose work type">
+    <button class="work-tab" id="tab-graphics" role="tab" aria-selected="true" aria-controls="panel-graphics">Graphics</button>
+    <button class="work-tab" id="tab-apps" role="tab" aria-selected="false" aria-controls="panel-apps" tabindex="-1">Apps</button>
+  </div>
+
+  <div class="work-panel" id="panel-graphics" role="tabpanel" aria-labelledby="tab-graphics">
 
   <div class="filter-bar" role="group" aria-label="Filter work by category">
     <button class="filter-btn" data-filter="all" aria-pressed="true">All work</button>
@@ -249,6 +256,16 @@
       </span>
     </button>
 
+    <button class="poster-card" data-cat="business">
+      <span class="poster-frame">
+        <img class="poster-img" src="posters/tuition 26.webp" width="1080" height="1350" loading="lazy" alt="Admissions poster for a Class 10 tuition centre offering Maths and Science coaching" />
+      </span>
+      <span class="poster-info">
+        <span class="poster-name">Tuition Centre Admissions</span>
+        <span class="poster-org">Private Tuition</span>
+      </span>
+    </button>
+
   </div>
 
   <div class="grid-more" id="gridMore">
@@ -256,6 +273,85 @@
   </div>
 
   <p class="sr-only" id="filterStatus" role="status" aria-live="polite"></p>
+  </div><!-- /#panel-graphics -->
+
+  <div class="work-panel" id="panel-apps" role="tabpanel" aria-labelledby="tab-apps" hidden>
+    <div class="case-head">
+      <p class="section-label">Case study</p>
+      <h3 class="case-title">An Noor <span>Beary Duroos</span></h3>
+      <p class="case-desc">An app for Islamic video and audio lectures in the Beary language. I designed the full interface: onboarding, a home feed organized by subject and series, search, course and lesson pages, an ebook library, and the player. A black and gold identity, built around a growing library of talks and series.</p>
+      <ul class="case-meta">
+        <li><span>Role</span>UI / UX design</li>
+        <li><span>Platform</span>Mobile app</li>
+        <li><span>Tool</span>Figma</li>
+        <li><span>Scope</span>30+ screens</li>
+      </ul>
+    </div>
+
+    <div class="screens-grid" id="screensGrid">
+
+      <button class="screen-card" data-screen="course">
+        <span class="screen-frame">
+          <img class="poster-img" src="annoor/course.webp" width="393" height="852" loading="lazy" alt="An Noor course page for the Seerah series, listing lessons with durations" />
+        </span>
+        <span class="poster-info">
+          <span class="poster-name">Course page</span>
+          <span class="poster-org">An Noor</span>
+        </span>
+      </button>
+
+      <button class="screen-card" data-screen="home">
+        <span class="screen-frame">
+          <img class="poster-img" src="annoor/home.webp" width="393" height="1136" loading="lazy" alt="An Noor home feed, with recommended lectures and subject categories" />
+        </span>
+        <span class="poster-info">
+          <span class="poster-name">Home feed</span>
+          <span class="poster-org">An Noor</span>
+        </span>
+      </button>
+
+      <button class="screen-card" data-screen="search">
+        <span class="screen-frame">
+          <img class="poster-img" src="annoor/search.webp" width="393" height="852" loading="lazy" alt="An Noor search results for Seerah, showing lecture series cover art" />
+        </span>
+        <span class="poster-info">
+          <span class="poster-name">Search</span>
+          <span class="poster-org">An Noor</span>
+        </span>
+      </button>
+
+      <button class="screen-card" data-screen="player">
+        <span class="screen-frame">
+          <img class="poster-img" src="annoor/player.webp" width="393" height="852" loading="lazy" alt="An Noor content page for Dua: The Best Cure, with player and description" />
+        </span>
+        <span class="poster-info">
+          <span class="poster-name">Content page</span>
+          <span class="poster-org">An Noor</span>
+        </span>
+      </button>
+
+      <button class="screen-card" data-screen="ebooks">
+        <span class="screen-frame">
+          <img class="poster-img" src="annoor/ebooks.webp" width="393" height="852" loading="lazy" alt="An Noor ebook library, showing Islamic book covers in a grid" />
+        </span>
+        <span class="poster-info">
+          <span class="poster-name">Ebook library</span>
+          <span class="poster-org">An Noor</span>
+        </span>
+      </button>
+
+      <button class="screen-card" data-screen="login">
+        <span class="screen-frame">
+          <img class="poster-img" src="annoor/login.webp" width="393" height="852" loading="lazy" alt="An Noor login screen, with email and Google sign in on a black and gold theme" />
+        </span>
+        <span class="poster-info">
+          <span class="poster-name">Login</span>
+          <span class="poster-org">An Noor</span>
+        </span>
+      </button>
+
+    </div>
+  </div><!-- /#panel-apps -->
 
   <div class="portfolio-cta">
     <p>Want to see more, or start a project?</p>
@@ -288,13 +384,13 @@
       <p class="section-label">About</p>
       <h2 class="section-title">Designed for meaning, not just aesthetics</h2>
       <p>
-        I'm <strong>Mohammad Rishaad</strong>, a graphic designer and Computer Science student based in Mangalore, India, working remotely with clients worldwide. I create visual content for Islamic organizations: events, seminars, countdowns, and educational media, where the design has to carry weight before a word is read.
+        I'm <strong>Mohammad Rishaad</strong>, a graphic designer and Computer Science student based in Mangalore, India, working remotely with clients worldwide. I create visual content for organizations and small businesses: events, seminars, countdowns, menus, and educational media, where the design has to carry weight before a word is read.
       </p>
       <p>
-        My work spans multiple organizations including <strong>Radiant Wing of Huda</strong>, <strong>Muslim Growth Movement</strong>, <strong>At-Tayyib Institute</strong>, and the <strong>Islamic Education Centre</strong>, alongside small business work. Each has its own identity, audience, and tone. I design to match each one, not to a template.
+        My work spans multiple organizations including <strong>Radiant Wing of Huda</strong>, <strong>Tarbiyah Arabic Institute</strong>, <strong>At-Tayyib Institute</strong>, and the <strong>Islamic Education Centre</strong>, alongside small business work. Each has its own identity, audience, and tone. I design to match each one, not to a template.
       </p>
       <p>
-        Outside of design, I'm studying <strong>CS &amp; Business Systems</strong> at St. Joseph Engineering College, organizing community programs, and exploring Islamic history and classical scholarship.
+        Outside of design, I'm studying <strong>CS &amp; Business Systems</strong> at St. Joseph Engineering College.
       </p>
       <div class="skills-list">
         <span class="skill-tag">Figma</span>
@@ -302,7 +398,7 @@
         <span class="skill-tag">Typography</span>
         <span class="skill-tag">Brand Identity</span>
         <span class="skill-tag">Affinity Designer</span>
-        <span class="skill-tag">Islamic Media</span>
+        <span class="skill-tag">App Design</span>
         <span class="skill-tag">Event Graphics</span>
         <span class="skill-tag">Educational Content</span>
       </div>
@@ -541,7 +637,7 @@
   <div class="contact-grid">
     <div>
       <p class="contact-intro">
-        I'm open to design work for Islamic organizations, events, educational media, small businesses, and community projects, remotely with clients anywhere. Reach out, even if you're not sure what you need yet.
+        I'm open to design work for organizations, events, educational media, small businesses, and apps, remotely with clients anywhere. Reach out, even if you're not sure what you need yet.
       </p>
       <div class="contact-methods">
         <a class="contact-method" href="mailto:mohammadrishaad11@gmail.com">
@@ -673,6 +769,43 @@
   showAllBtn.addEventListener('click', () => { expanded = true; render(true); showAllBtn.blur(); });
   render();
 
+  // ── WORK TYPE TOGGLE (Graphics / Apps) ──
+  const workTabs = [...document.querySelectorAll('.work-tab')];
+  const workToggle = document.querySelector('.work-toggle');
+  const panelGraphics = document.getElementById('panel-graphics');
+  const panelApps = document.getElementById('panel-apps');
+  const workOrder = ['graphics', 'apps'];
+  let appsRevealed = false;
+
+  function selectWork(which, focusTab) {
+    workTabs.forEach(t => {
+      const on = t.getAttribute('aria-controls') === 'panel-' + which;
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+      if (on && focusTab) t.focus();
+    });
+    panelGraphics.hidden = which !== 'graphics';
+    panelApps.hidden = which !== 'apps';
+    // The screen thumbnails live in a display:none panel until first shown, so
+    // reveal them on first open rather than via a scroll trigger that can never
+    // fire while hidden.
+    if (which === 'apps' && !appsRevealed && window.__revealScreens) {
+      appsRevealed = true;
+      window.__revealScreens();
+    }
+    // Panel swap changes document height, so every trigger below needs remeasuring.
+    if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+  }
+  workTabs.forEach(t => t.addEventListener('click',
+    () => selectWork(t.getAttribute('aria-controls').replace('panel-', ''))));
+  workToggle.addEventListener('keydown', e => {
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    e.preventDefault();
+    const cur = workTabs.findIndex(t => t.getAttribute('aria-selected') === 'true');
+    const dir = e.key === 'ArrowRight' ? 1 : -1;
+    selectWork(workOrder[(cur + dir + workOrder.length) % workOrder.length], true);
+  });
+
   // ── LIGHTBOX ──
   const lb = document.getElementById('lightbox');
   const lbImg = document.getElementById('lightbox-img');
@@ -680,22 +813,26 @@
   const lbOrg = document.getElementById('lb-org');
   const lbCounter = document.getElementById('lb-counter');
   let lbIndex = 0;
+  let lbGroup = [];
   let lastFocused = null;
 
   function showAt(i) {
-    if (!visible.length) return;
-    lbIndex = (i + visible.length) % visible.length;
-    const card = visible[lbIndex];
+    if (!lbGroup.length) return;
+    lbIndex = (i + lbGroup.length) % lbGroup.length;
+    const card = lbGroup[lbIndex];
     const img = card.querySelector('.poster-img');
     lbImg.src = img.src;
     lbImg.alt = img.alt;
     lbTitle.textContent = card.querySelector('.poster-name').textContent;
     lbOrg.textContent = card.querySelector('.poster-org').textContent;
-    lbCounter.textContent = (lbIndex + 1) + ' / ' + visible.length;
+    lbCounter.textContent = (lbIndex + 1) + ' / ' + lbGroup.length;
   }
-  function openLightbox(card) {
+  // group is the set the arrows page through: the filtered posters, or the
+  // app screens. Captured at open time so prev/next stay within one collection.
+  function openLightbox(card, group) {
+    lbGroup = group;
     lastFocused = document.activeElement;
-    showAt(visible.indexOf(card));
+    showAt(group.indexOf(card));
     lb.classList.add('open');
     document.body.style.overflow = 'hidden';
     document.getElementById('lb-close').focus();
@@ -706,7 +843,9 @@
     document.body.style.overflow = '';
     if (lastFocused) lastFocused.focus();
   }
-  allCards.forEach(card => card.addEventListener('click', () => openLightbox(card)));
+  allCards.forEach(card => card.addEventListener('click', () => openLightbox(card, visible)));
+  const screenCards = [...document.querySelectorAll('.screen-card')];
+  screenCards.forEach(card => card.addEventListener('click', () => openLightbox(card, screenCards)));
   document.getElementById('lb-close').addEventListener('click', closeLightbox);
   document.getElementById('lb-prev').addEventListener('click', () => showAt(lbIndex - 1));
   document.getElementById('lb-next').addEventListener('click', () => showAt(lbIndex + 1));
@@ -944,6 +1083,20 @@
 
     if (!leaving.length) { swap(); return; }
     gsap.to(leaving, { opacity: 0, y: 10, duration: 0.18, ease: 'power2.in', onComplete: swap });
+  };
+
+  // ── 9. App screens reveal on first toggle ─────────────────────────────
+  // Called by the Apps toggle the first time that panel opens. Screens stay
+  // in normal flow (no absolute positioning), so an interrupted run can only
+  // ever settle on the visible end state.
+  window.__revealScreens = function () {
+    var cards = gsap.utils.toArray('.screen-card');
+    if (!cards.length) return;
+    gsap.from(cards, {
+      opacity: 0, y: 40, duration: 0.7, stagger: 0.08, ease: 'power3.out',
+      clearProps: 'transform',
+      onComplete: function () { ScrollTrigger.refresh(); }
+    });
   };
 
   window.addEventListener('load', function () { ScrollTrigger.refresh(); });

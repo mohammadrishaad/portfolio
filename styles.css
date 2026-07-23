@@ -1052,3 +1052,117 @@
   }
   @media (max-width: 820px) {
   }
+
+  /* ════════════════════════════════════════════════════════════════
+     WORK TOGGLE + APP SCREENS
+     ════════════════════════════════════════════════════════════════ */
+
+  .work-toggle {
+    display: inline-flex;
+    gap: 0.3rem;
+    margin: 2rem 0 0.5rem;
+    padding: 0.3rem;
+    background: rgba(255,255,255,0.045);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+  }
+  .work-tab {
+    font-family: var(--font-body);
+    font-size: var(--fs-small);
+    font-weight: 600;
+    color: var(--muted);
+    background: transparent;
+    border: none;
+    border-radius: 999px;
+    padding: 0.6rem 1.6rem;
+    min-height: 44px;
+    cursor: pointer;
+    transition: color var(--transition), background var(--transition), box-shadow var(--transition);
+  }
+  .work-tab:hover { color: var(--white); }
+  .work-tab[aria-selected="true"] {
+    color: var(--gold);
+    background: var(--gold-dim);
+    box-shadow: inset 0 0 0 1px var(--gold-line);
+  }
+  .work-panel[hidden] { display: none; }
+
+  /* App case study */
+  .case-head { max-width: 640px; margin: 2.2rem 0 2.6rem; }
+  .case-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.7rem, 3.4vw, 2.4rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin: 0.7rem 0 0.9rem;
+  }
+  .case-title span { color: var(--gold); font-weight: 700; }
+  .case-desc { color: var(--muted); font-size: 1rem; line-height: 1.75; max-width: 60ch; }
+  .case-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2.4rem;
+    list-style: none;
+    margin-top: 1.6rem;
+    padding-top: 1.4rem;
+    border-top: 1px solid var(--border);
+  }
+  .case-meta li { font-size: var(--fs-small); font-weight: 600; color: var(--white); }
+  .case-meta li span {
+    display: block;
+    font-size: var(--fs-label);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.3rem;
+  }
+
+  /* Phone screen gallery */
+  .screens-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.4rem;
+    max-width: 860px;
+  }
+  .screen-card {
+    display: block;
+    background: transparent;
+    border: none;
+    padding: 0;
+    text-align: left;
+    font-family: inherit;
+    cursor: pointer;
+    transition: transform var(--transition);
+  }
+  .screen-card:hover { transform: translateY(-4px); }
+  /* Uniform phone frame. Screens taller than this ratio (the home feed) show
+     from the top; the lightbox reveals each one in full. */
+  .screen-frame {
+    position: relative;
+    display: block;
+    aspect-ratio: 393 / 852;
+    background: #000;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: border-color var(--transition), box-shadow var(--transition);
+  }
+  .screen-card:hover .screen-frame {
+    border-color: var(--gold-line);
+    box-shadow: 0 20px 44px -16px rgba(0,0,0,0.8);
+  }
+  .screen-frame .poster-img { object-fit: cover; object-position: top center; }
+  .screen-card:hover .poster-img { transform: scale(1.04); }
+
+  @media (max-width: 820px) {
+    .screens-grid { grid-template-columns: repeat(2, 1fr); gap: 1.1rem; }
+  }
+  @media (max-width: 460px) {
+    .screens-grid { gap: 0.8rem; }
+    .work-tab { padding: 0.6rem 1.15rem; }
+  }
