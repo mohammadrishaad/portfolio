@@ -557,17 +557,11 @@
 
   /* ── ABOUT ── */
   #about { background: var(--bg); }
-  /* Left-aligned like every other section-head on the site: .about-content
-     carries the same max-width .section-head uses elsewhere. .about-visual
-     is a second grid column, not a competing alignment, so it doesn't
-     reintroduce the centring this section used to have. */
-  .about-inner {
-    display: grid;
-    grid-template-columns: minmax(0, 760px) minmax(240px, 320px);
-    gap: 4.5rem;
-    align-items: start;
-  }
-  .about-content .section-title { margin-bottom: 1.6rem; }
+  /* Left-aligned like every other section-head on the site. Measure is held
+     by the paragraph max-width, not by the container, so the heading can
+     run wider than the body text. */
+  .about-inner { max-width: 760px; }
+  .about-inner .section-title { margin-bottom: 1.6rem; }
   /* Hairline rules and display numerals, not bordered cards. */
   .about-stats {
     display: grid;
@@ -599,14 +593,14 @@
     letter-spacing: 0.14em;
     text-transform: uppercase;
   }
-  .about-content > p:not(.section-label) {
+  .about-inner > p:not(.section-label) {
     color: var(--muted);
     font-size: 1.15rem;
     line-height: 1.75;
     margin: 0 0 1.15rem;
     max-width: 62ch;
   }
-  .about-content p strong { color: var(--white); font-weight: 600; }
+  .about-inner p strong { color: var(--white); font-weight: 600; }
   .skills-list {
     display: flex;
     flex-wrap: wrap;
@@ -641,76 +635,6 @@
       inset 0 1px 0 rgba(255,255,255,0.4),
       0 10px 22px -8px rgba(0,0,0,0.65),
       0 0 18px -6px rgba(255,148,8,0.4);
-  }
-
-  /* Decorative only (aria-hidden). Pure CSS, not GSAP: it's a static card,
-     not something scroll or state ever needs to drive, so a ticker would be
-     pure overhead. The reduced-motion rule at the top of this file already
-     zeroes out any animation's duration and iteration-count, so this needs
-     no separate guard. */
-  .about-visual { align-self: start; }
-  .about-visual-frame {
-    position: relative;
-    aspect-ratio: 3 / 4;
-    border-radius: var(--radius);
-    border: 1px solid var(--border);
-    background: var(--bg3);
-    overflow: hidden;
-  }
-  .about-visual-grid {
-    position: absolute;
-    inset: -32px;
-    background-image:
-      linear-gradient(rgba(255,148,8,0.07) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,148,8,0.07) 1px, transparent 1px);
-    background-size: 32px 32px;
-    animation: aboutGridDrift 13s linear infinite;
-  }
-  @keyframes aboutGridDrift {
-    to { background-position: 32px 32px; }
-  }
-  .about-visual-orbit {
-    position: absolute;
-    inset: 8%;
-    animation: aboutOrbitSpin 16s linear infinite;
-  }
-  @keyframes aboutOrbitSpin {
-    to { transform: rotate(360deg); }
-  }
-  .about-visual-lamp {
-    position: absolute;
-    top: 50%; left: 50%;
-    width: 58%; height: 58%;
-    margin-left: 24%;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    background: radial-gradient(circle, rgba(255,148,8,0.30) 0%, rgba(202,63,22,0.10) 45%, transparent 70%);
-  }
-  .about-visual-mark {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: 7rem;
-    color: rgba(255,255,255,0.05);
-  }
-  .about-visual-mark em { font-style: normal; color: rgba(255,148,8,0.22); }
-  .about-visual-tag {
-    position: absolute;
-    left: 1.4rem; bottom: 1.3rem;
-    font-size: var(--fs-label);
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-  /* Below this the second column has no room to breathe next to the body
-     copy, and it's decorative, so it drops rather than squeezing thin. */
-  @media (max-width: 820px) {
-    .about-inner { grid-template-columns: 1fr; }
-    .about-visual { display: none; }
   }
 
   /* ── PROCESS ── */
