@@ -16,9 +16,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=3" />
+<link rel="stylesheet" href="styles.css?v=4" />
 </head>
 <body>
+
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
 <!-- NAV -->
 <nav>
@@ -46,10 +48,20 @@
 
 <!-- HERO -->
 <section id="home">
-  <div class="hero-grid-bg"></div>
-  <div class="hero-glow"></div>
+  <!-- Background stack. .hero-tilt carries the fixed -9deg rake and the radial
+       mask; .hero-par is the layer JS nudges for pointer parallax, so the two
+       transforms never fight over the same element. -->
+  <div class="hero-bg" aria-hidden="true">
+    <div class="hero-tilt">
+      <div class="hero-par">
+        <div class="hero-grid"></div>
+        <div class="hero-orbit hero-orbit--a"><i class="hero-lamp"></i></div>
+        <div class="hero-orbit hero-orbit--b"><i class="hero-lamp"></i></div>
+      </div>
+    </div>
+    <div class="hero-glow"></div>
+  </div>
   <div class="hero-inner">
-    <p class="hero-eyebrow">Graphic Designer &amp; Visual Storyteller</p>
     <h1 class="hero-headline">Design that <em>speaks</em> before you read it</h1>
     <p class="hero-sub">
       I design event posters, brand materials, and educational media for organizations and small businesses. Remote work with clients worldwide, starting at $15 USD.
@@ -74,16 +86,18 @@
 
 <!-- PORTFOLIO -->
 <section id="portfolio">
-  <div class="section-head">
+  <div class="section-head portfolio-head">
     <p class="section-label">Selected work</p>
-    <h2 class="section-title">Posters &amp; app design</h2>
-    <p class="section-sub">Two sides of what I do: event graphics and brand work for organizations and businesses, and interface design for apps. Switch between them below.</p>
-  </div>
-
-  <div class="work-toggle" role="tablist" aria-label="Choose work type">
-    <span class="work-toggle-thumb" aria-hidden="true"></span>
-    <button class="work-tab" id="tab-graphics" role="tab" aria-selected="true" aria-controls="panel-graphics">Graphics</button>
-    <button class="work-tab" id="tab-apps" role="tab" aria-selected="false" aria-controls="panel-apps" tabindex="-1">Apps</button>
+    <div class="head-row">
+      <h2 class="section-title">Posters, apps &amp; websites</h2>
+      <div class="work-toggle" role="tablist" aria-label="Choose work type">
+        <span class="work-toggle-thumb" aria-hidden="true"></span>
+        <button class="work-tab" id="tab-graphics" role="tab" aria-selected="true" aria-controls="panel-graphics">Graphics</button>
+        <button class="work-tab" id="tab-apps" role="tab" aria-selected="false" aria-controls="panel-apps" tabindex="-1">Apps</button>
+        <button class="work-tab" id="tab-websites" role="tab" aria-selected="false" aria-controls="panel-websites" tabindex="-1">Websites</button>
+      </div>
+    </div>
+    <p class="section-sub">Three sides of what I do: event graphics and brand work for organizations and businesses, interface design for apps, and websites I design and build end to end.</p>
   </div>
 
   <div class="work-panel" id="panel-graphics" role="tabpanel" aria-labelledby="tab-graphics">
@@ -354,6 +368,41 @@
     </div>
   </div><!-- /#panel-apps -->
 
+  <div class="work-panel" id="panel-websites" role="tabpanel" aria-labelledby="tab-websites" hidden>
+    <div class="case-head">
+      <p class="section-label">Case study</p>
+      <h3 class="case-title">AT-Tayyib <span>Institute</span></h3>
+      <p class="case-desc">A site for an online Islamic institute teaching Aqeedah, Qur'an, Tajweed, Hifz, Seerah and Arabic. I designed and built it end to end: eight sections covering the programs, the teaching staff, class timings, and fees, with a folio rail that tracks your position down the page. Modern scholarly editorial in navy and gold.</p>
+      <ul class="case-meta">
+        <li><span>Role</span>Design and build</li>
+        <li><span>Type</span>Marketing site</li>
+        <li><span>Built with</span>HTML, CSS, JS</li>
+        <li><span>Scope</span>8 sections</li>
+      </ul>
+    </div>
+
+    <div class="sites-grid" id="sitesGrid">
+
+      <a class="site-card" href="https://at-tayyib-institute.vercel.app/" target="_blank" rel="noopener noreferrer">
+        <span class="site-frame">
+          <span class="site-bar">
+            <span class="site-dots"><i></i><i></i><i></i></span>
+            <span class="site-url">at-tayyib-institute.vercel.app</span>
+          </span>
+          <img class="site-img" src="sites/attayyib.webp" width="1440" height="900" loading="lazy" alt="Home page of the AT-Tayyib Institute website, with the headline Nurturing faith through knowledge" />
+        </span>
+        <span class="poster-info">
+          <span class="poster-name">
+            AT-Tayyib Institute
+            <svg class="site-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </span>
+          <span class="poster-org">Live site &middot; Visit</span>
+        </span>
+      </a>
+
+    </div>
+  </div><!-- /#panel-websites -->
+
   <div class="portfolio-cta">
     <p>Want to see more, or start a project?</p>
     <a class="btn-primary" href="#contact">Start a project</a>
@@ -364,24 +413,7 @@
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="about-grid">
-    <div class="about-portrait">
-      <div class="about-portrait-frame">
-        <img class="about-portrait-img" src="portrait.jpeg" width="900" height="1200" loading="lazy" alt="Portrait of Mohammad Rishaad" />
-      </div>
-      <div class="about-stats">
-        <div class="about-stat">
-          <p class="about-stat-num">10+</p>
-          <p class="about-stat-label">Clients</p>
-        </div>
-        <div class="about-stat">
-          <p class="about-stat-num">40+</p>
-          <p class="about-stat-label">Posters designed</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="about-body">
+  <div class="about-inner">
       <p class="section-label">About</p>
       <h2 class="section-title">Designed for meaning, not just aesthetics</h2>
       <p>
@@ -404,7 +436,17 @@
         <span class="skill-tag">Educational Content</span>
       </div>
       <a class="btn-primary" href="#contact">Work with me</a>
-    </div>
+
+      <div class="about-stats">
+        <div class="about-stat">
+          <p class="about-stat-num">10+</p>
+          <p class="about-stat-label">Clients</p>
+        </div>
+        <div class="about-stat">
+          <p class="about-stat-num">40+</p>
+          <p class="about-stat-label">Posters designed</p>
+        </div>
+      </div>
   </div>
 </section>
 
@@ -770,29 +812,26 @@
   showAllBtn.addEventListener('click', () => { expanded = true; render(true); showAllBtn.blur(); });
   render();
 
-  // ── WORK TYPE TOGGLE (Graphics / Apps) ──
+  // ── WORK TYPE TOGGLE (Graphics / Apps / Websites) ──
   const workTabs = [...document.querySelectorAll('.work-tab')];
   const workToggle = document.querySelector('.work-toggle');
   const workThumb = document.querySelector('.work-toggle-thumb');
-  const panelGraphics = document.getElementById('panel-graphics');
-  const panelApps = document.getElementById('panel-apps');
-  const workOrder = ['graphics', 'apps'];
-  let appsRevealed = false;
+  const workOrder = ['graphics', 'apps', 'websites'];
+  const workPanels = workOrder.map(w => document.getElementById('panel-' + w));
+  // Panels whose contents live inside display:none until first opened, so their
+  // reveal has to be fired on the toggle rather than by a scroll trigger that
+  // could never see them.
+  const lazyReveal = { apps: '__revealScreens', websites: '__revealSites' };
+  const revealed = {};
 
-  // Slide the glass pill onto the active tab. animate=false snaps it there with
-  // no transition (initial paint, font swap, resize); animate=true lets the CSS
-  // spring carry it across.
-  function moveThumb(animate) {
-    const active = workTabs.find(t => t.getAttribute('aria-selected') === 'true');
-    if (!active || !workThumb) return;
-    if (!animate) workThumb.style.transition = 'none';
-    const tr = workToggle.getBoundingClientRect();
-    const ar = active.getBoundingClientRect();
-    workThumb.style.width = ar.width + 'px';
-    workThumb.style.height = ar.height + 'px';
-    workThumb.style.transform =
-      'translate(' + (ar.left - tr.left) + 'px,' + (ar.top - tr.top) + 'px)';
-    if (!animate) { void workThumb.offsetWidth; workThumb.style.transition = ''; }
+  // Step the glass pill onto the active tab. The tabs are equal-width grid
+  // cells, so the pill is one cell wide in CSS and this only has to publish the
+  // active index. No measuring, so nothing to race the web font swap.
+  workToggle.style.setProperty('--tabs', String(workTabs.length));
+  function moveThumb() {
+    const i = workTabs.findIndex(t => t.getAttribute('aria-selected') === 'true');
+    if (i < 0 || !workThumb) return;
+    workToggle.style.setProperty('--i', String(i));
   }
 
   function selectWork(which, focusTab) {
@@ -802,15 +841,12 @@
       t.tabIndex = on ? 0 : -1;
       if (on && focusTab) t.focus();
     });
-    moveThumb(true);
-    panelGraphics.hidden = which !== 'graphics';
-    panelApps.hidden = which !== 'apps';
-    // The screen thumbnails live in a display:none panel until first shown, so
-    // reveal them on first open rather than via a scroll trigger that can never
-    // fire while hidden.
-    if (which === 'apps' && !appsRevealed && window.__revealScreens) {
-      appsRevealed = true;
-      window.__revealScreens();
+    moveThumb();
+    workPanels.forEach((p, i) => { if (p) p.hidden = workOrder[i] !== which; });
+    const fn = lazyReveal[which];
+    if (fn && !revealed[which] && window[fn]) {
+      revealed[which] = true;
+      window[fn]();
     }
     // Panel swap changes document height, so every trigger below needs remeasuring.
     if (window.ScrollTrigger) window.ScrollTrigger.refresh();
@@ -824,16 +860,7 @@
     const dir = e.key === 'ArrowRight' ? 1 : -1;
     selectWork(workOrder[(cur + dir + workOrder.length) % workOrder.length], true);
   });
-  // Place the pill on load, and re-snap it when the tab widths can change
-  // (web font swap-in, viewport resize) so it never drifts off the active tab.
-  moveThumb(false);
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => moveThumb(false));
-  window.addEventListener('load', () => moveThumb(false));
-  let thumbResizeT;
-  window.addEventListener('resize', () => {
-    clearTimeout(thumbResizeT);
-    thumbResizeT = setTimeout(() => moveThumb(false), 120);
-  });
+  moveThumb();
 
   // ── LIGHTBOX ──
   const lb = document.getElementById('lightbox');
@@ -934,6 +961,9 @@
      scripts fail to load, the page is fully functional and fully visible. -->
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<!-- SplitText became free in GSAP 3.13. Every use of it below is guarded, so a
+     failed load only costs the per-word heading reveal. -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
 <script>
 (function () {
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
@@ -957,15 +987,63 @@
 
   function start() {
   var grid = document.getElementById('posterGrid');
+  var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
   // ── 1. Hero entrance ──────────────────────────────────────────────────
+  // The headline wipes up behind a clip-path rather than being split into
+  // characters: the italic word carries a background-clip:text gradient, and
+  // splitting it into per-glyph spans restarts that gradient on every letter.
   gsap.timeline({ defaults: { ease: 'power3.out', duration: 0.85 } })
     .from('nav', { top: '-3rem', opacity: 0, duration: 0.7, clearProps: 'top' })
-    .from('.hero-eyebrow',  { y: 18, opacity: 0 }, '-=0.45')
-    .from('.hero-headline', { y: 28, opacity: 0 }, '-=0.62')
-    .from('.hero-sub',      { y: 20, opacity: 0 }, '-=0.66')
+    .from('.hero-headline', {
+      clipPath: 'inset(0% 0% 100% 0%)', y: 40, duration: 1.15,
+      ease: 'power4.out', clearProps: 'clipPath'
+    }, '-=0.45')
+    .from('.hero-sub',      { y: 20, opacity: 0 }, '-=0.78')
     .from('.hero-clients',  { y: 18, opacity: 0 }, '-=0.68')
     .from('.hero-actions',  { y: 18, opacity: 0 }, '-=0.68');
+
+  // ── 1b. Living hero background ────────────────────────────────────────
+  // The grid drifts one full cell diagonally and repeats, so the loop point is
+  // invisible. Two lamps orbit the tilted plane at different radii and speeds,
+  // lighting different regions of the grid as they pass.
+  gsap.to('.hero-grid', {
+    backgroundPosition: '64px 64px',
+    duration: 9, ease: 'none', repeat: -1
+  });
+  gsap.to('.hero-orbit--a', { rotation: 360, duration: 34, ease: 'none', repeat: -1 });
+  gsap.to('.hero-orbit--b', { rotation: -360, duration: 52, ease: 'none', repeat: -1 });
+  gsap.to('.hero-orbit--a .hero-lamp', {
+    scale: 1.22, opacity: 0.72, duration: 6.5,
+    ease: 'sine.inOut', repeat: -1, yoyo: true
+  });
+  gsap.to('.hero-orbit--b .hero-lamp', {
+    scale: 1.15, opacity: 0.6, duration: 8.5,
+    ease: 'sine.inOut', repeat: -1, yoyo: true, delay: 1.4
+  });
+
+  // Pointer parallax. quickTo keeps this to one interpolated tween per axis
+  // instead of spawning a new tween on every mousemove event.
+  if (fine) {
+    var par = document.querySelector('.hero-par');
+    var home = document.getElementById('home');
+    if (par && home) {
+      var px = gsap.quickTo(par, 'x', { duration: 0.9, ease: 'power3.out' });
+      var py = gsap.quickTo(par, 'y', { duration: 0.9, ease: 'power3.out' });
+      home.addEventListener('pointermove', function (e) {
+        var r = home.getBoundingClientRect();
+        px((e.clientX / r.width  - 0.5) * -46);
+        py((e.clientY / r.height - 0.5) * -34);
+      });
+      home.addEventListener('pointerleave', function () { px(0); py(0); });
+    }
+  }
+
+  // Hero copy drifts up and dims as the section scrolls away.
+  gsap.to('.hero-inner', {
+    y: -70, opacity: 0.25, ease: 'none',
+    scrollTrigger: { trigger: '#home', start: 'top top', end: 'bottom top', scrub: 0.6 }
+  });
 
   // ── 2. Poster grid reveal ─────────────────────────────────────────────
   // Only ever animates toward visible, so it can never fight the filter
@@ -994,16 +1072,62 @@
       scrollTrigger: { trigger: host, start: 'top 86%', once: true }
     });
   }
-  gsap.utils.toArray('.section-head').forEach(function (head) {
-    gsap.from(head.children, {
+  // Headings rise word by word. If SplitText did not load, the whole heading
+  // rises as one block instead.
+  gsap.utils.toArray('.section-title, .case-title').forEach(function (title) {
+    var st = { trigger: title, start: 'top 88%', once: true };
+    var split = null;
+    if (window.SplitText) {
+      try { split = new SplitText(title, { type: 'words', mask: 'words' }); }
+      catch (e) { split = null; }
+    }
+    if (split && split.words.length) {
+      gsap.from(split.words, {
+        yPercent: 115, opacity: 0, duration: 0.9, stagger: 0.055,
+        ease: 'power3.out', scrollTrigger: st
+      });
+    } else {
+      gsap.from(title, {
+        y: 26, opacity: 0, duration: 0.8, ease: 'power3.out', scrollTrigger: st
+      });
+    }
+  });
+
+  // The rest of each heading block. Titles are excluded because they animate
+  // themselves above, and .head-row is excluded so it does not drag the title
+  // and the toggle around underneath their own tweens.
+  gsap.utils.toArray('.section-head, .case-head').forEach(function (head) {
+    var els = gsap.utils.toArray(head.children).filter(function (c) {
+      return !c.matches('.section-title, .case-title, .head-row');
+    });
+    if (!els.length) return;
+    gsap.from(els, {
       y: 26, opacity: 0, duration: 0.8, stagger: 0.09, ease: 'power3.out',
       scrollTrigger: { trigger: head, start: 'top 86%', once: true }
     });
   });
+
+  // Reveal the toggle as one unit. Animating its children would drag the
+  // absolutely positioned glass pill off the active tab.
+  var wtEl = document.querySelector('.work-toggle');
+  if (wtEl) {
+    gsap.from(wtEl, {
+      y: 20, opacity: 0, duration: 0.8, ease: 'power3.out', clearProps: 'transform',
+      scrollTrigger: { trigger: wtEl, start: 'top 92%', once: true }
+    });
+  }
   revealGroup('.filter-bar', '.filter-btn');
-  revealGroup('.about-portrait');
-  revealGroup('.about-body');
+  revealGroup('.about-inner');
   revealGroup('.contact-methods');
+
+  // Hairline rules draw out from the left as they come into view.
+  gsap.utils.toArray('.section-divider').forEach(function (hr) {
+    gsap.from(hr, {
+      scaleX: 0, transformOrigin: 'left center', duration: 1.1,
+      ease: 'power3.inOut', clearProps: 'transform',
+      scrollTrigger: { trigger: hr, start: 'top 96%', once: true }
+    });
+  });
 
   // ── 4. Stat count-up ──────────────────────────────────────────────────
   gsap.utils.toArray('.about-stat-num').forEach(function (el) {
@@ -1128,13 +1252,62 @@
     });
   };
 
+  // ── 10. Website cards reveal on first toggle ──────────────────────────
+  window.__revealSites = function () {
+    var cards = gsap.utils.toArray('.site-card');
+    if (!cards.length) return;
+    gsap.from(cards, {
+      opacity: 0, y: 40, duration: 0.8, stagger: 0.1, ease: 'power3.out',
+      clearProps: 'transform',
+      onComplete: function () { ScrollTrigger.refresh(); }
+    });
+  };
+
+  // ── 11. Scroll progress rule ──────────────────────────────────────────
+  var prog = document.getElementById('scrollProgress');
+  if (prog) {
+    gsap.set(prog, { scaleX: 0, transformOrigin: 'left center' });
+    gsap.to(prog, {
+      scaleX: 1, ease: 'none',
+      scrollTrigger: { start: 0, end: 'max', scrub: 0.25 }
+    });
+  }
+
+  // ── 12. Magnetic CTAs ─────────────────────────────────────────────────
+  // The filled buttons lean a few pixels toward the cursor. Capped well under
+  // the button's own padding so the label never leaves its box.
+  if (fine) {
+    gsap.utils.toArray('.btn-primary, .nav-cta, .form-submit').forEach(function (btn) {
+      var mx = gsap.quickTo(btn, 'x', { duration: 0.4, ease: 'power3.out' });
+      var my = gsap.quickTo(btn, 'y', { duration: 0.4, ease: 'power3.out' });
+      btn.addEventListener('pointermove', function (e) {
+        var r = btn.getBoundingClientRect();
+        mx((e.clientX - r.left - r.width  / 2) * 0.22);
+        // -2px keeps the CSS hover lift, which the inline transform would
+        // otherwise override the moment the pointer moves.
+        my((e.clientY - r.top  - r.height / 2) * 0.30 - 2);
+      });
+      btn.addEventListener('pointerleave', function () { mx(0); my(0); });
+    });
+  }
+
   window.addEventListener('load', function () { ScrollTrigger.refresh(); });
 
-  // Belt and braces: if the ticker somehow never advances, force every intro
-  // tween to its end state so nothing is left permanently invisible.
+  // Belt and braces: if the ticker somehow never advances, force the intro
+  // tweens to their end state so nothing is left permanently invisible.
+  //
+  // Only the entrance reveals may be completed this way. A scrubbed tween's
+  // end state is the scrolled-past state, so forcing progress(1) on the hero
+  // parallax parked the hero copy at opacity 0.25 and -70px with the page still
+  // at the top; an infinite loop has no meaningful end at all.
   setTimeout(function () {
     if (gsap.ticker.frame > 1) return;
-    gsap.globalTimeline.getChildren(true, true, false).forEach(function (t) { t.progress(1); });
+    gsap.globalTimeline.getChildren(true, true, false).forEach(function (t) {
+      if (t.repeat && t.repeat() === -1) return;
+      var stv = t.vars && t.vars.scrollTrigger;
+      if (stv && stv.scrub) return;
+      t.progress(1);
+    });
     gsap.set('.poster-card', { opacity: 1, y: 0 });
   }, 2500);
   }
