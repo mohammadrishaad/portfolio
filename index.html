@@ -420,9 +420,6 @@
         I'm <strong>Mohammad Rishaad</strong>, a graphic designer and Computer Science student based in Mangalore, India, working remotely with clients worldwide. I create visual content for organizations and small businesses: events, seminars, countdowns, menus, and educational media, where the design has to carry weight before a word is read.
       </p>
       <p>
-        My work spans multiple organizations including <strong>Radiant Wing of Huda</strong>, <strong>Tarbiyah Arabic Institute</strong>, <strong>At-Tayyib Institute</strong>, and the <strong>Islamic Education Centre</strong>, alongside small business work. Each has its own identity, audience, and tone. I design to match each one, not to a template.
-      </p>
-      <p>
         Outside of design, I'm studying <strong>CS &amp; Business Systems</strong> at St. Joseph Engineering College.
       </p>
       <div class="skills-list">
@@ -445,6 +442,10 @@
         <div class="about-stat">
           <p class="about-stat-num">40+</p>
           <p class="about-stat-label">Posters designed</p>
+        </div>
+        <div class="about-stat">
+          <p class="about-stat-num">5+</p>
+          <p class="about-stat-label">Websites designed</p>
         </div>
       </div>
   </div>
@@ -849,7 +850,12 @@
       window[fn]();
     }
     // Panel swap changes document height, so every trigger below needs remeasuring.
-    if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+    // Deferred a frame so the hide/show and the lazy-reveal tween's own layout
+    // read land first: refreshing synchronously inside the click handler stacked
+    // two forced layouts back to back, and on a page with this many triggers
+    // (poster batches, price cards, process steps) that read as a dropped,
+    // half-painted frame right over the hero on the way back up.
+    if (window.ScrollTrigger) requestAnimationFrame(() => ScrollTrigger.refresh());
   }
   workTabs.forEach(t => t.addEventListener('click',
     () => selectWork(t.getAttribute('aria-controls').replace('panel-', ''))));
