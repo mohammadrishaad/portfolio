@@ -556,7 +556,7 @@
   .portfolio-cta p { color: var(--muted); font-size: var(--fs-small); margin-bottom: 1.1rem; }
 
   /* ── ABOUT ── */
-  #about { background: var(--bg); }
+  #about { background: var(--bg); position: relative; }
   /* Left-aligned like every other section-head on the site. Measure is held
      by the paragraph max-width, not by the container, so the heading can
      run wider than the body text. */
@@ -595,8 +595,8 @@
   }
   .about-inner > p:not(.section-label) {
     color: var(--muted);
-    font-size: 1.15rem;
-    line-height: 1.75;
+    font-size: 1.3rem;
+    line-height: 1.7;
     margin: 0 0 1.15rem;
     max-width: 62ch;
   }
@@ -635,6 +635,38 @@
       inset 0 1px 0 rgba(255,255,255,0.4),
       0 10px 22px -8px rgba(0,0,0,0.65),
       0 0 18px -6px rgba(255,148,8,0.4);
+  }
+
+  /* Decorative corner mark (aria-hidden), same 8-point shape as the
+     reference, cut from a div with clip-path rather than an SVG so it
+     can carry the real CTA gradient (var(--gradient-cta)) directly instead
+     of duplicating those stops as SVG gradient stops. Pure CSS: nothing
+     here depends on scroll or state, so it doesn't need GSAP or a ticker.
+     The site-wide reduced-motion rule already zeroes the spin out. */
+  .about-mark {
+    position: absolute;
+    right: clamp(1.5rem, 5vw, 4rem);
+    bottom: clamp(1.5rem, 6vw, 3.5rem);
+    width: clamp(110px, 12vw, 190px);
+    aspect-ratio: 1;
+    background: var(--gradient-cta);
+    clip-path: polygon(
+      50% 2%, 56.89% 33.37%, 83.94% 16.06%, 66.63% 43.11%,
+      98% 50%, 66.63% 56.89%, 83.94% 83.94%, 56.89% 66.63%,
+      50% 98%, 43.11% 66.63%, 16.06% 83.94%, 33.37% 56.89%,
+      2% 50%, 33.37% 43.11%, 16.06% 16.06%, 43.11% 33.37%
+    );
+    filter: drop-shadow(0 14px 34px rgba(255,148,8,0.35));
+    animation: aboutMarkSpin 48s linear infinite;
+    pointer-events: none;
+  }
+  @keyframes aboutMarkSpin {
+    to { transform: rotate(360deg); }
+  }
+  /* Text runs the full section width here, so the corner mark would sit
+     on top of it rather than in open space. */
+  @media (max-width: 820px) {
+    .about-mark { display: none; }
   }
 
   /* ── PROCESS ── */
